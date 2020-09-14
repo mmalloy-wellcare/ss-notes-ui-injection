@@ -1,0 +1,13 @@
+[
+    {
+        "Fld": "string",
+        "Note": "string",
+        "NoteCatgTypeCode": "string",
+        "NoteSk": 0,
+        "NoteTitle": "string",
+        "RecPrimId": "string",
+        "SendToCallCtrInd": true,
+        "SvcTypeCode": "string",
+        "Tbl": "string"
+    }
+]
