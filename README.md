@@ -1,27 +1,15 @@
-# SsNotesUi
+# ss-notes-ui
+Accounts Receivable Bill MicroFrontend.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
+## Commands
+* ```npm install``` - Installs the dependencies needed for the project.
+* ```npm run start:local``` - Starts the mock server (port 15300) and serves the application (port 14200).
+* ```npm run start:dev``` - Serves the application (port 15200). API calls made return development data.
+* ```npm run start:qa``` - Serves the application (port 15200). API calls made return QA data.
+* ```npm run mock-services``` - Starts the mock server only (port 15300).
+* ```npm run test``` - Executes unit tests via Karma and shows coverage report.
 
-## Development server
+## Running Locally
+**Make sure you have the node package installed**
+1. Run "npm run start:local" in "ss-notes-ui". This should run both the application and the AR mock server concurenntly.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
