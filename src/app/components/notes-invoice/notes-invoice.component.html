@@ -1,0 +1,22 @@
+<ng-container *ngIf="!notesLoading">
+  <div *ngFor="let note of notesData" class="container">
+    <div class="notes">
+      <span class="title">
+        Created By:
+        <span class="value text createBy">
+          {{note.CreatedBy}}
+        </span>
+      </span>
+      <span class="value text">
+        {{note.CreatedDate | date: 'MM/dd/yyyy' }}
+      </span>
+      <span class="value note">
+        {{note.Note}}
+      </span>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="(notesData ? notesData.length === 0 : false) && !notesLoading">
+  <span class="no-notes">No Notes Available</span>
+</ng-container>
+<i *ngIf="notesLoading" class="fa fa-spinner fa-spin fa-3x" aria-hidden="true"></i>

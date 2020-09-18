@@ -1,13 +1,40 @@
 [
     {
-        "Fld": "string",
-        "Note": "string",
-        "NoteCatgTypeCode": "string",
-        "NoteSk": 0,
-        "NoteTitle": "string",
-        "RecPrimId": "string",
+        "NoteSk": 3,
+        "NoteTitle": "Calling member",
+        "Note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "NoteCatgTypeCode": "Automation02",
         "SendToCallCtrInd": true,
-        "SvcTypeCode": "string",
-        "Tbl": "string"
-    }
+        "SvcTypeCode": "ARBILL",
+        "Tbl": "INVOICE",
+        "Fld": "Automation03",
+        "RecPrimId": "12",
+        "CreatedDate": "2020-09-09",
+        "CreatedBy": "bstark@caidan"
+      },
+      {
+        "NoteSk": 4,
+        "NoteTitle": "Calling member",
+        "Note": "Automation02",
+        "NoteCatgTypeCode": "Automation02",
+        "SendToCallCtrInd": true,
+        "SvcTypeCode": "ARBILL",
+        "Tbl": "INVOICE",
+        "Fld": "Automation03",
+        "RecPrimId": "12",
+        "CreatedDate": "2020-09-09",
+        "CreatedBy": "bstark@caidan"
+      },
+      {
+        "NoteSk": 5,
+        "NoteTitle": "Calling member",
+        "Note": "Automation02",
+        "NoteCatgTypeCode": "Automation02",
+        "SendToCallCtrInd": true,
+        "SvcTypeCode": "ARBILL",
+        "Tbl": "INVOICE",
+        "RecPrimId": "12",
+        "CreatedDate": "2020-09-09",
+        "CreatedBy": "bstark@caidan"
+      }
 ]

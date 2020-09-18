@@ -8,9 +8,15 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <ss-notes-ui></ss-notes-ui>
+  <h1>Notes Invoice Component</h1>
+  <ss-notes-ui-notes-invoice-cmpnt></ss-notes-ui-notes-invoice-cmpnt>
   <script>
-    localStorage.setItem('wcp-core-state-accessToken', '"insert-valid-access-token"');
+    const notesInvoice = document.getElementsByTagName('ss-notes-ui-notes-invoice-cmpnt')[0];
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      notesInvoice.recPrimId = '12';
+    });
+    localStorage.setItem('wcp-core-state-accessToken', '"51d716fb-492e-4bc3-a7a4-8052623c1ade"');
   </script>
 </body>
 </html>
