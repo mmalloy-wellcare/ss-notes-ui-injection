@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlertsService } from '@nextgen/web-care-portal-core-library';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +24,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   entryComponents: [AppComponent, NotesInvoiceComponent]
 })
 
-
 export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {}
 
@@ -35,5 +33,5 @@ export class AppModule implements DoBootstrap {
 
     customElements.define('ss-notes-ui', applicationWebComponent);
     customElements.define('ss-notes-ui-notes-invoice-cmpnt', notesInvoiceComponent);
-}
+  }
 }

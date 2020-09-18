@@ -19,6 +19,7 @@ export class NotesInvoiceComponent {
   notesLoading;
   notesData;
   private recId;
+
   constructor(
     private notesService: NotesService,
     private alertsService: AlertsService,
@@ -36,5 +37,4 @@ export class NotesInvoiceComponent {
       this.notesLoading = false;
     });
   }
-
 }
