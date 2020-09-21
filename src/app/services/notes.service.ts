@@ -5,7 +5,7 @@ import { DataService } from '@nextgen/web-care-portal-core-library';
 @Injectable()
 export class NotesService {
   private pageSize = 100;
-  private notesURI = '/shared-services/ss-notes/v1/ss/notes';
+  private notesURI = 'shared-services/ss-notes/v1/ss/notes';
 
   constructor(private dataService: DataService) { }
 

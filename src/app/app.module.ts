@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, DoBootstrap, Injector } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { createCustomElement } from '@angular/elements';
 import { NotesInvoiceComponent } from './components/notes-invoice/notes-invoice.component';
@@ -16,6 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     MatSnackBarModule
   ],
