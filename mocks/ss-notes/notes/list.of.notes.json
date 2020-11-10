@@ -36,5 +36,17 @@
         "RecPrimId": "12",
         "CreatedDate": "2020-09-09",
         "CreatedBy": "bstark@caidan"
-      }
+      },
+      {
+        "NoteSk": 6,
+        "NoteTitle": "Calling member",
+        "Note": "Payment Processed",
+        "NoteCatgTypeCode": "Automation02",
+        "SendToCallCtrInd": true,
+        "SvcTypeCode": "ARMGR",
+        "Tbl": "INVOICE",
+        "RecPrimId": "12",
+        "CreatedDate": "2020-09-09",
+        "CreatedBy": "bstark@caidan"
+      }     
 ]

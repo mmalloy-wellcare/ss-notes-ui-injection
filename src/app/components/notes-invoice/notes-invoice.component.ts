@@ -10,7 +10,7 @@ import { NotesService } from 'src/app/services/notes.service';
 export class NotesInvoiceComponent {
   @Input() set recPrimId(recPrimaryId: string) {
     this.recId = `${recPrimaryId}`;
-    this.loadNotes({recPrimId: this.recId , svcTypeCode: 'ARBILL', tbl: 'INVOICE'});
+    this.loadNotes({recPrimId: this.recId , svcTypeCode: 'ARMGR', tbl: 'INVOICE'});
   }
   get recPrimId() {
     return this.recId;
