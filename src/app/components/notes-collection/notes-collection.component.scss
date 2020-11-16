@@ -1,0 +1,119 @@
+.notes-checkbox-group{
+    margin-left: 2.4rem;
+}
+
+.actions-wrapper {
+    .search-form-field {
+        font-size: 1.4rem;
+        margin-top: 0.5rem;
+        padding-right: 1rem;
+    }
+
+    .search-wrapper {
+        display: inline-block;
+        background-color: #ffffff;
+        border: 1px solid transparent;
+        border-bottom-color: #212121;
+        padding-left: 0.75rem;
+        margin-right: 0.5rem;
+
+        &.error {
+            border-color: red;
+        }
+
+        .search-field {
+            line-height: 2rem;
+            border: none;
+
+            &.error {
+                color: red;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .search-button {
+            line-height: 3rem;
+            height: 3rem;
+            width: 3rem;
+        }
+
+        button[mat-icon-button] {
+            font-size: 1.4rem;
+        }
+    }
+
+    button[mat-icon-button] {
+        color: #107ba5;
+        font-size: 1.5rem;
+        line-height: 3rem;
+        height: 3rem;
+        width: 3rem;
+    }
+
+    #button-new {
+        margin-left: 0.5rem;
+    }
+}
+
+.grid-plus-sign::before{
+    content: '\e83e';
+    font-family: "Font Awesome";
+ }
+
+.fa {
+    color: #107ba4;
+}
+
+.details-column{
+    background-color: #107ba4;
+    color: white;
+    padding: .2em;
+    border-radius: .2em;
+    position: relative;
+    top: .2em;
+    left: 1.5em;
+}
+
+.history-column{
+    font-size: 1.5em;
+    position: relative;
+    left: 1.5em;
+}
+
+#notesHeaderForDetails {
+    position: relative;
+    left: 1.25em;
+    top: .2em;
+}
+
+/* .k-grid tr.hidden {
+    display: none;
+} */
+
+tr .hide-checked-row {
+   display: none;
+}
+
+.column-sort-icon-container {
+    font-size: 1.2em;
+    float: right;
+    width: 5%;
+}
+
+#notesGrid .k-grid .k-grid-header
+{
+   padding-right:0!important;
+}
+
+#notesGrid .k-grid .k-grid-content
+{
+   overflow-y: visible!important;
+}
+
+/* ar-mgr-ui .k-grid td.k-hierarchy-cell .k-plus:before {
+    content: '/f0fe'!important;
+    font-family: FontAwesome!important;
+} */

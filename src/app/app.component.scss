@@ -1,3 +1,695 @@
 ss-notes-ui {
-    font-size: inherit;
+    @mixin flexColumn() {
+        display: flex;
+        flex-direction: column;
+    }
+    @mixin fillerCell() {
+        padding: 2rem 20rem 2rem 1.2rem;
+        margin-left: -12px;
+    }
+
+    @include flexColumn();
+    $brandColor: #107ba4;
+    $brandColorOne: #024069;
+    $brandColorTwo: #5f3777;
+    $grayLightest: #f2f2f2;
+    $grayLight: #e0e0e0;
+    $gray: #bdbdbd;
+    $grayOpacityLight: rgba(0, 0, 0, 0.05);
+    $grayOpacityMedium: rgba(0, 0, 0, 0.097);
+    $grayOpacity: rgba(0, 0, 0, 0.12);
+    $cellBorder: 0.1rem solid $gray;
+    height: 100%;
+
+    .mat-raised-button.mat-primary:hover:not([disabled]) {
+        background-color: $brandColorOne;
+    }
+
+    .web-component-flex {
+        @include flexColumn();
+        flex: 1;
+    }
+
+    .workbench-header {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto 0.8rem auto;
+        user-select: none;
+
+        .workbench-title {
+            color: #fff;
+            background-color: $brandColorOne;
+            padding: 0.8rem 2.8rem 0.5rem 2.8rem;
+            text-transform: uppercase;
+            font-weight: 100;
+            font-size: 2.4rem;
+        } 
+        
+        .workbench-curve {
+            background-color: $brandColorOne;
+            padding: 1.1rem;
+            border-radius: 0 0 100% 100%;
+            margin-top: -1rem;
+        }    
+    }
+    
+    .side-padding {
+        padding: 0 32px;
+    }
+
+    mat-toolbar.mat-toolbar.mat-toolbar-single-row {
+        padding: 0;
+        height: 5rem;
+
+        .fa {
+            color: $brandColor;
+            transition: all 0.2s;
+        }
+
+        &.alt-title-bar {
+            border-top: 0.1rem solid transparent;
+            border-bottom: 0.1rem solid #bdbdbd;
+            margin-bottom: 1.6rem;
+        }
+
+        &.account-details-header {
+            font: 1.8rem Calibri;
+            font-weight: 500;
+            color: #333;
+    
+            .account-details-title {
+                font: 2rem Calibri;
+                font-weight: 600;
+            }
+        }
+
+        mat-checkbox.mat-checkbox.activity-checkbox-group {
+            margin-left: 2.4rem;
+        }
+    }
+
+    kendo-grid {
+        // fixes flex to page issue
+        height: 0px;
+    }
+
+    mat-tab-group.mat-tab-group {
+        flex: 1;
+
+        .mat-tab-header .mat-tab-header-pagination.mat-tab-header-pagination {
+            display: none;
+        }
+
+        .mat-tab-body-wrapper {
+            flex: 1;
+
+            .mat-tab-body-content {
+                @include flexColumn();
+            }
+        }
+
+        .mat-tab-labels {
+        
+            .mat-tab-label {
+                font: 14px Calibri;
+                font-weight: 600;
+                padding: 0 1.2rem;
+                min-width: 100px;
+                opacity: 1;
+    
+                .fa {
+                    color: $brandColor;
+                }
+
+            }
+    
+            .mat-tab-label-active {
+                color: $brandColorTwo;
+                .fa {
+                    color: $brandColorTwo
+                }
+            }
+        }
+
+        &.mat-primary .mat-ink-bar {
+            background-color: $brandColorTwo;
+            height: 0.3rem;
+        }
+    }
+
+    .mat-form-field {
+        font: 1.6rem Calibri;
+        box-sizing: border-box;
+
+        .mat-form-field-infix {
+            width: auto;
+        }
+    }
+
+    .account-ribbon {
+        display: flex;
+        padding-top: 2.4rem;
+        margin-bottom: 1.2rem;
+        border: $cellBorder;
+        background-color: $grayLightest;
+        padding: 1.2rem 1.2rem 0 1.2rem;
+
+        .mat-form-field {
+            flex: 1;
+
+            ~ .mat-form-field {
+                padding-left: 2.4rem;
+            }
+        }
+    }
+
+    .account-search-container {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.2s;
+
+        &.expanded {
+            max-height: 30rem;
+            transition: all 0.2s;
+        }
+
+        .account-search-card {
+            border: $cellBorder;
+            background-color: $grayLightest;
+            padding: 1.2rem;
+
+            .account-search-field-row {
+                display: flex;
+                align-items: baseline;
+
+                &:first-child {
+                    padding-top: 0.6rem;
+                }
+
+                .mat-form-field {
+                    flex: 0 20%;
+                    padding: 0.6rem 1.2rem;
+                }
+    
+                button.mat-icon-button {
+                    color: #333;
+
+                    &:disabled {
+                        color: $gray;
+                    }
+                }
+
+                #account-search-dob-clear {
+                    margin-right: 3.1rem;
+                }
+
+                .last-form-field {
+                    padding: 0.6rem 0 0.6rem 1.2rem;
+                }
+    
+                &.long-field, .long-field {
+                    flex: 0 40%;
+                }
+    
+                .button-group-horizontal {
+                    padding: 0.6rem 1.2rem 0.6rem 0;
+
+                    button ~ span {
+                        margin-left: 0.8rem;
+                    }
+                }
+            }    
+        }
+    }
+
+    .fa.expansion-toggle {
+        transition: transform 0.2s;
+        cursor: pointer;
+
+        &:after {
+            content: '\f138';
+            font-size: 2.2rem;
+            margin: 0 0.6rem;            
+        }
+
+        &.expanded {
+            transform: rotate(90deg);
+            transition: transform 0.2s;
+        }
+    }
+
+    .custom-dropdown-trigger {
+        &.custom-dropdown-opened {
+            .icon-flip {
+                transform: rotate(180deg);
+                transition: all 0.2s;
+            }
+        }
+    }
+
+    .k-grid {
+        thead tr{
+            &:hover {
+                background: none;
+            }
+        }
+        .k-grid-header .k-header {
+            border-color: $gray;
+        }
+        .k-grid-header-locked, .k-grid-content-locked {
+            border-right: $cellBorder;
+        }
+        tr {
+            &.k-detail-row {
+                background-color: $grayLight;
+    
+                &:hover {
+                    background-color: $grayLight;
+                }
+    
+                tr:last-child td {
+                    border-bottom-width: 0;
+                }
+    
+                td {
+                    border-bottom-width: 0.1rem;
+    
+                    &.k-detail-cell {
+                        padding: 1.2rem 0;
+    
+                        .detail-card {
+                            .k-grid {
+                                height: auto;
+                                margin-right: 1.2rem;
+                            }
+                        }
+                    }
+                }
+            }
+            &.k-grouping-row {
+                td {
+                    .k-reset {
+                        margin-left: -0.4rem;
+
+                        a {
+                            color: $brandColor;
+                            display: block;
+                            width: 2rem;
+                            height: 2rem;
+                            text-align: center;
+                            margin-top: 1.1rem;
+
+                            .fa {
+                                font-size: 1.6rem;
+                            }
+
+                            i.expanded {
+                                transform: rotate(90deg);
+                            }
+
+                            &.k-icon, &.hidden-expand {
+                                display: none;
+                            }
+                        }
+
+                        .mat-checkbox {
+                            margin: 0 0.8rem;
+                            border-right: $cellBorder;
+                            border-left: $cellBorder;
+                            padding: 1.2rem 0.8rem 1.2rem 0.7rem;
+
+                            &.secondary-grouping-chkbox {
+                                margin: 0 0.1rem 0 0.7rem;
+                                padding: 1.2rem 0.7rem 1.2rem 0.9rem;
+                                border-right: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        td {
+            // border colors have been updated, will need to change in core
+            border-color: $gray;
+
+            &.k-hierarchy-cell {
+                .k-icon {
+                    color: $brandColor;
+                }
+        
+                .k-plus:before, .k-minus:before {
+                    content: '\f0fe';
+                    font-family: FontAwesome;                   
+                }
+        
+                .k-plus, .k-minus {
+                    transition: all 0.2s; 
+                }
+    
+                .k-minus {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+        // adding user icon to account search results dependent hierarchy cell
+        &.k-grid#account-search-results {
+            tr.k-detail-row {
+                td.k-hierarchy-cell {
+                    vertical-align: top;
+                    padding-top: 2.3rem;
+
+                    &:after {
+                        content: '\f2c0';
+                        font-family: FontAwesome;
+                        font-size: 1.8rem;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+        &#account-billing-periods-grid {
+            .k-grid-aria-root {
+                margin-left: -6.5rem;
+            }
+            .k-grid-header {
+                border-bottom: 0.1rem solid $gray;
+
+                .k-grid-header-locked, .k-grid-header-wrap {
+                    background-color: white;
+                }
+                .k-grid-header-wrap {
+                    overflow-x: auto;
+
+                    table {
+                        border-right: $cellBorder;
+                    }
+                    &::-webkit-scrollbar {
+                        height: 0;
+                    }
+                }
+            }
+            thead tr {
+                &.k-filter-row {
+                    background-color: rgba(16, 123, 164, 0.1);
+                    box-shadow: inset 0 -1.9rem 0.5rem -1.5rem rgba(0,0,0,0.14);
+                    text-align: right;
+                    color: #333;
+
+                    td {
+                        padding: 6px 12px;
+
+                        .filter-input {
+                            text-align: left;
+                            border: $cellBorder;
+                            background-color: white;
+                            padding: 0.5rem;
+                            box-sizing: border-box;
+                        }
+                    }
+                }
+                .collapsible-column-group {
+                    display: flex;
+                    align-items: center;
+                    .fa {
+                        color: $brandColor;
+                        cursor: pointer;
+
+                        &.hidden {
+                            display: none;
+                        }
+                    }
+                }
+                .spanned-column-header {
+                    background-color: $grayOpacity;
+                }
+                th {
+                    background-color: $grayOpacityLight;
+
+                    .k-i-sort-asc-sm, .k-i-sort-desc-sm {
+                        vertical-align: bottom;
+                    }
+                    
+                    .fa {
+                        color: $brandColor;  
+                    }
+
+                    .filter-menu-button-container {
+                        display: flex;
+                        align-items: center;
+                        position: absolute;
+                        right: 0.6rem;
+                        top: 0;
+                        bottom: 0;
+
+                        button.filter-menu-button {
+                            padding: 0.3rem 0.8rem 0 0.8rem;
+                            line-height: 1.5rem;
+                            min-width: 1rem;
+                            height: 1.9rem;
+    
+                            &.filtered {
+                                background-color: $brandColorTwo;
+    
+                                .fa {
+                                    color: white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+			.k-grid-content-locked {
+                tr td {
+                    &:first-child {
+                        background-color: $grayOpacity;
+
+                        a {
+                            display: none;
+                        }
+                        .initial-sub-column-cell {
+                            padding: 0.3rem 0;
+                            margin-left: 6.9rem;
+                        }
+                    }
+                    &:nth-child(n+2) {
+                        background-color: $grayOpacityMedium;
+                        border-left: none;
+
+                        .k-reset {
+                            justify-content: flex-end;
+                            margin-right: 0.6rem;
+                        }
+                    }
+                }
+            }
+            .k-grid-content, .k-grid-header-wrap {
+                table, .k-grid-table {
+                    border-right: $cellBorder;
+                }
+                box-shadow: inset 1.8rem 0 0.5rem -1.5rem rgba(0,0,0,0.14);
+            }
+            td {
+                overflow: hidden;
+                text-overflow: clip;
+                white-space: nowrap;
+
+                .primary-group {
+                    background-color: $grayOpacity;
+                    @include fillerCell();
+                }
+                .secondary-group {
+                    background-color: $grayOpacityLight;
+                    @include fillerCell();
+                }
+                .number-cell {
+                    position: relative;
+                    padding: 2rem 10.8rem 2rem 1.2rem;
+                    
+                    &:not(.primary-group), &:not(.secondary-group) {
+                        margin-left: -1.2rem;
+                    }
+                    span {
+                        position: absolute;
+                        right: 1.2rem;
+                    }
+                }
+                .initial-sub-column-cell {
+                    font-weight: 600;
+
+                    &.data-cell {
+                        background-color: $grayOpacityLight;
+                    }
+                    &.secondary-group {
+                        background-color: $grayOpacityMedium;
+                    }
+                }
+                &.initial-transaction-cell {
+                    font-weight: 600;
+                    white-space: normal;
+                    background-color: $grayOpacityLight;
+                }
+            }
+			tr {
+                &.k-grouping-row {
+                    + tr:not(.k-grouping-row) {
+                        display: none;
+                    }
+                    td {
+                        padding: 0 0 0 1.2rem;
+
+                        .secondary-row {
+                            height: 3.9rem;
+                        }
+                    }
+                }
+                &.mutual-highlight {
+                    background-color: rgba(16, 123, 164, 0.1);
+                }
+            }
+        }
+    }
+
+    //invoice Search
+    .invoice-search-container {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.2s;
+
+        &.expanded {
+            max-height: 30rem;
+            transition: all 0.2s;
+        }
+
+        .invoice-search-card {
+            border: $cellBorder;
+            background-color: $grayLightest;
+            padding: 1.2rem;
+
+            .invoice-search-field-row {
+                display: flex;
+                align-items: baseline;
+
+                &:first-child {
+                    padding-top: 0.6rem;
+                }
+
+                .mat-form-field {
+                    flex: 0 20%;
+                    padding: 0.6rem 1.2rem;
+                }
+    
+                button.mat-icon-button {
+                    color: #333;
+
+                    &:disabled {
+                        color: $gray;
+                    }
+                }
+
+                #create-date-from-clear {
+                    margin-right: 3.1rem;
+                }
+
+                #create-date-to-clear {
+                    margin-right: 3.1rem;
+                }
+
+                .last-form-field {
+                    padding: 0.6rem 0 0.6rem 1.2rem;
+                }
+    
+                &.long-field, .long-field {
+                    flex: 0 40%;
+                }
+    
+                .button-group-horizontal {
+                    padding: 0.6rem 1.2rem 0.6rem 0;
+
+                    button ~ span {
+                        margin-left: 0.8rem;
+                    }
+                }
+            }  
+            
+            .text-display{
+                 margin-left: auto;  
+            }
+        }
+    }  
+}
+
+// overlays are outside of the ar-mgr-ui element
+// added 'ar-mgr-ui' text to checkbox dropdown class so it won't affect anything outside of ar-mgr-ui
+.ar-mgr-ui-checkbox-dropdown {
+    background-color: white;
+    max-height: 40rem;
+    overflow-y: auto;
+    box-shadow: 0 0.2rem 0.4rem -0.1rem rgba(0, 0, 0, 0.2), 0 0.4rem 0.5rem 0 rgba(0, 0, 0, 0.14), 0 0.1rem 1rem 0 rgba(0, 0, 0, 0.12);
+
+    &.bill-period-filter {
+        overflow: inherit;
+
+        .selection-container {
+            max-height: 20rem;
+            overflow-y: auto;
+        }
+
+        .filter-section {
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.4rem;
+
+            input {
+                font: 1.2rem Calibri;
+                border: 0.1rem solid #bdbdbd;
+                background-color: white;
+                width: 100%;
+                padding: 0.5rem;
+                box-sizing: border-box;
+            }
+        }
+    }
+    .mat-checkbox {
+        margin-top: 0.4rem;
+        padding: 0 6.4rem 0.4rem 1.6rem;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+
+        &:last-child {
+            border: none;
+        }
+
+        &.child-checkbox {
+            padding-left: 4rem;
+        }
+
+        .mat-checkbox-label {
+            font-weight: 600;
+            font-family: Calibri;
+            color: #024069;
+        }
+
+        .mat-checkbox-ripple {
+            display: none;
+        }
+    }
+    button.mat-button {
+        font-family: Calibri;
+
+        &.selection-item {
+            text-align: left;
+            padding-left: 1.6rem;
+            color: #024069;
+            border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+
+            .fa {
+                font-size: 1.8rem;
+                margin-right: 0.5rem;
+                color: #107ba4;
+            }
+    
+            &:hover {
+                background: none;
+            }    
+        }
+    }
 }

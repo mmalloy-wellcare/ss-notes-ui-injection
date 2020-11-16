@@ -1,0 +1,142 @@
+<mat-toolbar>
+  <div class="actions-wrapper">
+    <span class="search-wrapper">
+        <input type="text" placeholder="Search" class="search-field"/>
+        <button mat-icon-button class="search-button">
+            <em class="fa fa-search"></em>
+        </button>
+    </span>
+  </div>
+  <span class="spacer"></span>
+  <mat-checkbox color="primary" class="checkbox-group" checked="checked" (click)="toggleSystemNotes()">System Notes &nbsp;</mat-checkbox>
+  <mat-checkbox color="primary" class="checkbox-group" checked="checked" (click)="toggleUserNotes()">User Notes</mat-checkbox>
+  <span class="spacer"></span>
+
+  <button id="button-new" mat-stroked-button>
+      <em class="fa fa-plus" aria-hidden="true"></em>&nbsp; New
+  </button>
+</mat-toolbar>
+
+ <kendo-grid 
+    #notesGrid
+    id="notesGrid"
+    [kendoGridBinding]="gridData" 
+    [width]="600"
+    [height]="350"
+    [pageable]="true"  
+    [pageSize]="pageSize" 
+    [sortable]="true">
+    <!-- //(pageChange)="pageChange($event)"> -->
+<!--     <kendo-grid-column width="80">
+      <ng-template kendoGridHeaderTemplate>
+            <em class="fa fa-plus details-column" id="notesHeaderForDetails"></em>
+      </ng-template>
+      <ng-template kendoGridCellTemplate let-dataItem let-column >
+          <em class="fa fa-plus details-column"></em>
+      </ng-template>
+    </kendo-grid-column> -->
+    <kendo-grid-column field="history" title="History" width="100">
+      <ng-template kendoGridCellTemplate let-dataItem let-column>
+          <em class="fa fa-history history-column"></em>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="noteId" title="Note ID" width="150" [class]="{ 'hide-checked-row' : systemChecked}">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="associatedId" title="Associated ID" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="associatedIdType" title="Associated ID Type" width="250">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="module" title="Module" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="category" title="Category" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="title" title="Title" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="sendToCallCenter" title="Send To Call Center" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="loadingType" title="Loading Type" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="creationDate" title="Creation Date" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="createdBy" title="Created By" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="modifiedDate" title="Modified Date" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="modifiedBy" title="Modified By" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+      <ng-template kendoGridDetailTemplate>
+        <p>These are the notes details.</p>
+      </ng-template>
+</kendo-grid>
