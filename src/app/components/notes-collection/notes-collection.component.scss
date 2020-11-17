@@ -1,3 +1,6 @@
+$brandColor: #107ba4;
+$grayLightest: #f2f2f2;
+
 .notes-checkbox-group{
     margin-left: 2.4rem;
 }
@@ -103,17 +106,23 @@ tr .hide-checked-row {
     width: 5%;
 }
 
-#notesGrid .k-grid .k-grid-header
+::ng-deep .k-grid-header
 {
-   padding-right:0!important;
+   padding: unset!important;
 }
 
-#notesGrid .k-grid .k-grid-content
+::ng-deep .k-grid-content
 {
    overflow-y: visible!important;
+} 
+//.k-grid .k-hierarchy-cell .k-icon
+//a .k-icon .k-plus::before
+::ng-deep .k-grid .k-hierarchy-cell .k-icon{
+    background-color: #107ba4!important;
+    color: white!important;
+    padding: .1em!important;
+    border-radius: .5rem!important;
+    font-size: 1.7rem!important;
+    width: 1.7rem!important;
+    height: 1.7rem!important;
 }
-
-/* ar-mgr-ui .k-grid td.k-hierarchy-cell .k-plus:before {
-    content: '/f0fe'!important;
-    font-family: FontAwesome!important;
-} */
