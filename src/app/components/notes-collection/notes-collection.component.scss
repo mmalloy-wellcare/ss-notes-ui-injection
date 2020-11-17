@@ -115,14 +115,13 @@ tr .hide-checked-row {
 {
    overflow-y: visible!important;
 } 
-//.k-grid .k-hierarchy-cell .k-icon
-//a .k-icon .k-plus::before
+
 ::ng-deep .k-grid .k-hierarchy-cell .k-icon{
     background-color: #107ba4!important;
     color: white!important;
     padding: .1em!important;
-    border-radius: .5rem!important;
-    font-size: 1.7rem!important;
-    width: 1.7rem!important;
-    height: 1.7rem!important;
+    border-radius: .3rem!important;
+    font-size: 1.3rem!important;
+    width: 1.3rem!important;
+    height: 1.3rem!important;
 }
