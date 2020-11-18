@@ -93,7 +93,7 @@
     display: none;
 } */
 
-tr .hide-checked-row {
+::ng-deep .k-grid tr.hidecheckedrow {
    display: none;
 }
 

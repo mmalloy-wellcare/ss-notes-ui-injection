@@ -308,42 +308,7 @@ ss-notes-ui {
         td {
             // border colors have been updated, will need to change in core
             border-color: $gray;
-
-            // &.k-hierarchy-cell {
-            //     .k-icon {
-            //         color: $brandColor;
-            //     }
-        
-            //     .k-plus:before, .k-minus:before {
-            //         content: '\f0fe';
-            //         font-family: FontAwesome;                   
-            //     }
-        
-            //     .k-plus, .k-minus {
-            //         transition: all 0.2s; 
-            //     }
-    
-            //     .k-minus {
-            //         transform: rotate(90deg);
-            //     }
-            // }
         }
-        // adding user icon to account search results dependent hierarchy cell
- /*        &.k-grid#account-search-results {
-            tr.k-detail-row {
-                td.k-hierarchy-cell {
-                    vertical-align: top;
-                    padding-top: 2.3rem;
-
-                    &:after {
-                        content: '\f2c0';
-                        font-family: FontAwesome;
-                        font-size: 1.8rem;
-                        font-weight: 600;
-                    }
-                }
-            }
-        } */
         &#account-billing-periods-grid {
             .k-grid-aria-root {
                 margin-left: -6.5rem;

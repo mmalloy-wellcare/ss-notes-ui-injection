@@ -10,8 +10,8 @@
     </span>
   </div>
   <span class="spacer"></span>
-  <mat-checkbox color="primary" class="checkbox-group" checked="checked" (click)="toggleSystemNotes()">System Notes &nbsp;</mat-checkbox>
-  <mat-checkbox color="primary" class="checkbox-group" checked="checked" (click)="toggleUserNotes()">User Notes</mat-checkbox>
+  <mat-checkbox color="primary" class="checkbox-group" checked="systemChecked" (click)="toggleSystemNotes()">System Notes &nbsp;</mat-checkbox>
+  <mat-checkbox color="primary" class="checkbox-group" checked="userChecked" (click)="toggleUserNotes()">User Notes</mat-checkbox>
   <span class="spacer"></span>
 
   <button id="button-new" mat-stroked-button>
@@ -27,13 +27,14 @@
     [height]="gridHeight"
     [pageable]="true"  
     [pageSize]="pageSize" 
-    [sortable]="true">
+    [sortable]="true"
+    [rowClass]="rowCallback">
     <kendo-grid-column field="history" title="History" width="100">
       <ng-template kendoGridCellTemplate let-dataItem let-column>
           <em class="fa fa-history history-column"></em>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="noteId" title="Note ID" width="150" [class]="{ 'hide-checked-row' : systemChecked}">
+    <kendo-grid-column field="noteId" title="Note ID" width="150">
       <ng-template kendoGridHeaderTemplate let-column="column">
         {{column.title}}
         <span class="column-sort-icon-container">

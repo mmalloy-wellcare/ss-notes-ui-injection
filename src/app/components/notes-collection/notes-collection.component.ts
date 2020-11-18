@@ -71,60 +71,29 @@ export class NotesCollectionComponent implements OnInit {
 public gridData = this.data;
 
 systemChecked = true;
-user = true;
-
-includeSystemRows: boolean;
-restartRowId = '0';
+userChecked = true;
 
 constructor() {
-  //this.loadNotes();
 }
 
 ngOnInit() {
-}
-
-/*   public pageChange(event: PageChangeEvent): void{
-  this.skip = event.skip;
-  this.loadNotes();
-} */
-/* 
-private loadNotes(): void{
-  this.gridView = {
-    data: this.data.slice(this.skip, this.skip + this.pageSize),
-    total: this.data.length
-  };
-} */
-
-loadGridData() {
-  const savedRestartRowId = this.restartRowId || '0';
-  //this.gridLoading = true;
-
-/*    this.billingPeriodsService.getBillingPeriods(
-    this.accountData.AccountID, savedRestartRowId, this.includeVoidedRows,)
-    .subscribe(response => {
-      this.processGridData(response.data);
-      this.saveGridRows();
-    },
-  (error) => {
-    this.alertsService.showErrorSnackbar(error);
-    this.gridLoading = false;
-  }); */
-}
-
-resetGridData() {
-  //this.gridView = null;
+  console.log(this.systemChecked);
+  console.log('In ngOnInit');
 }
 
 toggleSystemNotes() {
   this.systemChecked = !this.systemChecked;
-/*     this.includeSystemRows = !this.includeSystemRows;
-  this.restartRowId = '0';
-  this.resetGridData();
-  this.loadGridData(); */
 }
 
 toggleUserNotes() {
-  this.user = !this.user;
+  this.userChecked = !this.userChecked;
+}
+
+public rowCallback = (context: RowClassArgs) => {
+  return {
+    hidecheckedrow: (context.dataItem.loadingType === 'System' && !this.systemChecked)
+                    || (context.dataItem.loadingType === 'User' && !this.userChecked)
+  };
 }
 
 
