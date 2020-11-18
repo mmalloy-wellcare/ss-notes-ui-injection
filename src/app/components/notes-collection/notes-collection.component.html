@@ -1,3 +1,5 @@
+<h1>Notes Collection</h1>
+
 <mat-toolbar>
   <div class="actions-wrapper">
     <span class="search-wrapper">
@@ -22,19 +24,10 @@
     id="notesGrid"
     [kendoGridBinding]="gridData" 
     [width]="600"
-    [height]="350"
+    [height]="gridHeight"
     [pageable]="true"  
     [pageSize]="pageSize" 
     [sortable]="true">
-    <!-- //(pageChange)="pageChange($event)"> -->
-<!--     <kendo-grid-column width="80">
-      <ng-template kendoGridHeaderTemplate>
-            <em class="fa fa-plus details-column" id="notesHeaderForDetails"></em>
-      </ng-template>
-      <ng-template kendoGridCellTemplate let-dataItem let-column >
-          <em class="fa fa-plus details-column"></em>
-      </ng-template>
-    </kendo-grid-column> -->
     <kendo-grid-column field="history" title="History" width="100">
       <ng-template kendoGridCellTemplate let-dataItem let-column>
           <em class="fa fa-history history-column"></em>

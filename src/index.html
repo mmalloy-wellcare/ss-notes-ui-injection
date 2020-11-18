@@ -8,14 +8,12 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <h1>Notes Invoice Component</h1>
-  <ss-notes-ui-notes-invoice-cmpnt></ss-notes-ui-notes-invoice-cmpnt>
-  <ss-notes-ui-notes-collection-cmpnt></ss-notes-ui-notes-collection-cmpnt>
+  <ss-notes-ui></ss-notes-ui>
   <script>
     const notesInvoice = document.getElementsByTagName('ss-notes-ui-notes-invoice-cmpnt')[0];
   
     document.addEventListener('DOMContentLoaded', () => {
-      notesInvoice.recPrimId = '12';
+      //notesInvoice.recPrimId = '12';
     });
     localStorage.setItem('wcp-core-state-accessToken', '"insert-valid-access-token"');
   </script>

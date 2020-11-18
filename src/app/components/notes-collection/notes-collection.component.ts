@@ -8,9 +8,15 @@ import { RowClassArgs } from '@progress/kendo-angular-grid';
   templateUrl: './notes-collection.component.html',
   styleUrls: ['./notes-collection.component.scss']
 })
+
 export class NotesCollectionComponent implements OnInit {
 
+  private cellHeight = 43;
+  private headerHeight = 53;
+  private gridBuffer = 70;
+
   public pageSize = 3;
+  public gridHeight = (this.pageSize * this.cellHeight) + this.headerHeight + this.gridBuffer;
 
   private data = [{
     "plus": "",

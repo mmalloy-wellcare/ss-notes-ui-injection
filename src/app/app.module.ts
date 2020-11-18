@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotesCollectionComponent } from './components/notes-collection/notes-collection.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -40,12 +41,13 @@ import { NotesCollectionComponent } from './components/notes-collection/notes-co
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    AppRoutingModule
   ],
   providers: [NotesService, AlertsService],
   bootstrap: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [AppComponent, NotesInvoiceComponent, NotesCollectionComponent]
+  entryComponents: [AppComponent]
 })
 
 export class AppModule implements DoBootstrap {
@@ -53,11 +55,6 @@ export class AppModule implements DoBootstrap {
 
   ngDoBootstrap() {
     const applicationWebComponent = createCustomElement(AppComponent, { injector: this.injector });
-    const notesInvoiceComponent = createCustomElement(NotesInvoiceComponent, {injector: this.injector});
-    const notesCollectionComponent = createCustomElement(NotesCollectionComponent, {injector: this.injector});
-
     customElements.define('ss-notes-ui', applicationWebComponent);
-    customElements.define('ss-notes-ui-notes-invoice-cmpnt', notesInvoiceComponent);
-    customElements.define('ss-notes-ui-notes-collection-cmpnt', notesCollectionComponent);
   }
 }

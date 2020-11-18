@@ -29,29 +29,6 @@ ss-notes-ui {
         @include flexColumn();
         flex: 1;
     }
-
-    .workbench-header {
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto 0.8rem auto;
-        user-select: none;
-
-        .workbench-title {
-            color: #fff;
-            background-color: $brandColorOne;
-            padding: 0.8rem 2.8rem 0.5rem 2.8rem;
-            text-transform: uppercase;
-            font-weight: 100;
-            font-size: 2.4rem;
-        } 
-        
-        .workbench-curve {
-            background-color: $brandColorOne;
-            padding: 1.1rem;
-            border-radius: 0 0 100% 100%;
-            margin-top: -1rem;
-        }    
-    }
     
     .side-padding {
         padding: 0 32px;
@@ -332,27 +309,27 @@ ss-notes-ui {
             // border colors have been updated, will need to change in core
             border-color: $gray;
 
-            &.k-hierarchy-cell {
-                .k-icon {
-                    color: $brandColor;
-                }
+            // &.k-hierarchy-cell {
+            //     .k-icon {
+            //         color: $brandColor;
+            //     }
         
-                .k-plus:before, .k-minus:before {
-                    content: '\f0fe';
-                    font-family: FontAwesome;                   
-                }
+            //     .k-plus:before, .k-minus:before {
+            //         content: '\f0fe';
+            //         font-family: FontAwesome;                   
+            //     }
         
-                .k-plus, .k-minus {
-                    transition: all 0.2s; 
-                }
+            //     .k-plus, .k-minus {
+            //         transition: all 0.2s; 
+            //     }
     
-                .k-minus {
-                    transform: rotate(90deg);
-                }
-            }
+            //     .k-minus {
+            //         transform: rotate(90deg);
+            //     }
+            // }
         }
         // adding user icon to account search results dependent hierarchy cell
-        &.k-grid#account-search-results {
+ /*        &.k-grid#account-search-results {
             tr.k-detail-row {
                 td.k-hierarchy-cell {
                     vertical-align: top;
@@ -366,7 +343,7 @@ ss-notes-ui {
                     }
                 }
             }
-        }
+        } */
         &#account-billing-periods-grid {
             .k-grid-aria-root {
                 margin-left: -6.5rem;
