@@ -77,8 +77,6 @@ constructor() {
 }
 
 ngOnInit() {
-  console.log(this.systemChecked);
-  console.log('In ngOnInit');
 }
 
 toggleSystemNotes() {

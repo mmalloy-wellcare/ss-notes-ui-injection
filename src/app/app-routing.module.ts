@@ -6,7 +6,8 @@ import { NotesCollectionComponent } from './components/notes-collection/notes-co
 
 const routes: Routes = [{
   path: 'ss-notes-ui/notes-invoice',
-  component: NotesInvoiceComponent
+  component: NotesInvoiceComponent,
+  data: {recPrimaryId: '12'}
 },
 {
   path: 'ss-notes-ui/notes-collection',
