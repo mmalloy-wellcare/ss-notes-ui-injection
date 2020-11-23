@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { SelectableSettings, GridComponent as KendoGridComponent, ColumnSortSettings } from '@progress/kendo-angular-grid';
 import { RowClassArgs } from '@progress/kendo-angular-grid';
+import { NotesCollections } from 'src/app/common/models/notes.model';
 
 @Component({
   selector: 'ss-notes-ui-notes-collection',
@@ -10,16 +11,26 @@ import { RowClassArgs } from '@progress/kendo-angular-grid';
 })
 
 export class NotesCollectionComponent implements OnInit {
+  notes: NotesCollections[] = [];
+  public gridData = this.notes;
 
   private cellHeight = 43;
   private headerHeight = 53;
   private gridBuffer = 70;
 
-  public pageSize = 3;
+  public pageSize = 3; //notes.length
   public gridHeight = (this.pageSize * this.cellHeight) + this.headerHeight + this.gridBuffer;
 
-  private data = [{
-    "plus": "",
+  systemChecked = true;
+  userChecked = true;
+
+  loadingtype: any;
+
+constructor() {
+}
+
+ngOnInit() {
+  this.notes = [{
     "history": "",
     "noteId": 1,
     "associatedId": 123456,
@@ -35,7 +46,6 @@ export class NotesCollectionComponent implements OnInit {
     "modifiedDate": "Today",
     "modifiedBy": "Betty Sue"
   }, {
-    "plus": "",
     "history": "",
     "noteId": 2,
     "associatedId": 223456,
@@ -51,7 +61,6 @@ export class NotesCollectionComponent implements OnInit {
     "modifiedDate": "Yesterday",
     "modifiedBy": "Billy Joe"
   }, {
-    "plus": "",
     "history": "",
     "noteId": 3,
     "associatedId": 323456,
@@ -67,16 +76,7 @@ export class NotesCollectionComponent implements OnInit {
     "modifiedBy": "Betty Sue"
 }];
 
-
-public gridData = this.data;
-
-systemChecked = true;
-userChecked = true;
-
-constructor() {
-}
-
-ngOnInit() {
+  this.gridData = this.notes;
 }
 
 toggleSystemNotes() {
@@ -92,6 +92,12 @@ public rowCallback = (context: RowClassArgs) => {
     hidecheckedrow: (context.dataItem.loadingType === 'System' && !this.systemChecked)
                     || (context.dataItem.loadingType === 'User' && !this.userChecked)
   };
+}
+
+Search() {
+  this.gridData = this.gridData.filter(res => {
+    return res.loadingType.toLocaleLowerCase().match(this.loadingtype.toLocaleLowerCase());
+  });
 }
 
 

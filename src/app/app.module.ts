@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotesCollectionComponent } from './components/notes-collection/notes-collection.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { AppRoutingModule } from './app-routing.module';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [NotesService, AlertsService],
   bootstrap: [],

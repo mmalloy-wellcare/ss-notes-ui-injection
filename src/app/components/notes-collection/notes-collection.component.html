@@ -1,17 +1,18 @@
 <mat-toolbar>
-  <div class="actions-wrapper">
-    <span class="search-wrapper">
-        <input type="text" placeholder="Search" class="search-field"/>
-        <button mat-icon-button class="search-button">
-            <em class="fa fa-search"></em>
-        </button>
-    </span>
-  </div>
-  <span class="spacer"></span>
   <mat-checkbox color="primary" class="checkbox-group" checked="systemChecked" (click)="toggleSystemNotes()">System Notes &nbsp;</mat-checkbox>
   <mat-checkbox color="primary" class="checkbox-group" checked="userChecked" (click)="toggleUserNotes()">User Notes</mat-checkbox>
   <span class="spacer"></span>
 
+  <div class="actions-wrapper">
+    <span class="search-wrapper">
+        <input type="text" class="search-field" placeholder="Search"
+        [(ngModel)]="loadingtype" (input)="Search()"/>
+        <button mat-icon-button matSuffix class="search-button">
+          <em class="fa fa-search"></em>
+        </button>
+    </span>
+  </div>
+  <span class="spacer"></span>
   <button id="button-new" mat-stroked-button>
       <em class="fa fa-plus" aria-hidden="true"></em>&nbsp; New
   </button>
