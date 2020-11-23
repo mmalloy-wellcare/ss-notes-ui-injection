@@ -24,16 +24,17 @@ export class NotesCollectionComponent implements OnInit {
   systemChecked = true;
   userChecked = true;
 
-  loadingtype: any;
+  searchValue: any;
 
 constructor() {
 }
 
 ngOnInit() {
   this.notes = [{
+    "details": "These are the notes deatails.",
     "history": "",
-    "noteId": 1,
-    "associatedId": 123456,
+    "noteId": "1",
+    "associatedId": "123456",
     "associatedIdType": "System Assoc",
     "module": "Payments",
     "category": "Credit Memo",
@@ -46,9 +47,10 @@ ngOnInit() {
     "modifiedDate": "Today",
     "modifiedBy": "Betty Sue"
   }, {
+    "details": "Or is it notes history?",
     "history": "",
-    "noteId": 2,
-    "associatedId": 223456,
+    "noteId": "2",
+    "associatedId": "223456",
     "associatedIdType": "User Assoc",
     "module": "Billing / Payments",
     "category": "Reco",
@@ -61,9 +63,10 @@ ngOnInit() {
     "modifiedDate": "Yesterday",
     "modifiedBy": "Billy Joe"
   }, {
+    "details": "Who knows!",
     "history": "",
-    "noteId": 3,
-    "associatedId": 323456,
+    "noteId": "3",
+    "associatedId": "323456",
     "associatedIdType": "Multiple",
     "module": "Payments",
     "category": "High Payment Amount",
@@ -95,9 +98,22 @@ public rowCallback = (context: RowClassArgs) => {
 }
 
 Search() {
-  this.gridData = this.gridData.filter(res => {
-    return res.loadingType.toLocaleLowerCase().match(this.loadingtype.toLocaleLowerCase());
-  });
+  if(this.searchValue != ""){
+    this.gridData = this.gridData.filter(res => {
+      return res.details.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.associatedId.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.associatedIdType.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.module.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.category.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.title.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.loadingType.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.createdBy.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.modifiedBy.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase());
+    });
+  }else if(this.searchValue == ""){
+    this.ngOnInit();
+  }
+
 }
 
 

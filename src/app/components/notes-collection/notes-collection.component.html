@@ -6,7 +6,7 @@
   <div class="actions-wrapper">
     <span class="search-wrapper">
         <input type="text" class="search-field" placeholder="Search"
-        [(ngModel)]="loadingtype" (input)="Search()"/>
+        [(ngModel)]="searchValue" (input)="Search()"/>
         <button mat-icon-button matSuffix class="search-button">
           <em class="fa fa-search"></em>
         </button>
@@ -129,7 +129,7 @@
       </span>
       </ng-template>
     </kendo-grid-column>
-      <ng-template kendoGridDetailTemplate>
-        <p>These are the notes details.</p>
+      <ng-template kendoGridDetailTemplate let-dataItem>
+        <p>{{dataItem.details}}</p>
       </ng-template>
 </kendo-grid>
