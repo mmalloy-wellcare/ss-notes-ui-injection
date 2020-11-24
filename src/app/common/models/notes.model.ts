@@ -1,4 +1,5 @@
 export class NotesCollections {
+    details: string;
     history: string;
     noteId: string;
     associatedId: string;
@@ -8,7 +9,6 @@ export class NotesCollections {
     title: string;
     sendToCallCenter: string;
     loadingType: string;
-    system: string;
     creationDate: string;
     createdBy: string;
     modifiedDate: string;
