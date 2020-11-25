@@ -108,7 +108,7 @@ Search() {
              res.createdBy.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
              res.modifiedBy.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase());
     });
-  }else if(this.searchValue == ""){
+  }else{
     this.ngOnInit();
   }
 
