@@ -31,7 +31,14 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              },
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -54,7 +61,7 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-              }
+                }
               ]
             }
           }
@@ -122,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "ss-notes-ui"
+  "defaultProject": "ss-notes-ui",
+  "cli": {
+    "analytics": false
+  }
 }

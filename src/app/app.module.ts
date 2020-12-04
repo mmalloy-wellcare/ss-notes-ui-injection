@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, DoBootstrap, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { createCustomElement } from '@angular/elements';
+import { EmptyModule } from '@nextgen/web-care-portal-core-library';
 import { NotesInvoiceComponent } from './components/notes-invoice/notes-invoice.component';
 import { NotesService } from './services/notes.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -44,13 +45,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatSelectModule,
     MatTooltipModule,
     AppRoutingModule,
+    EmptyModule,
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [NotesService, AlertsService],
   bootstrap: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [AppComponent]
+  entryComponents: [AppComponent,
+                    NotesInvoiceComponent,
+                    NotesCollectionComponent]
 })
 
 export class AppModule implements DoBootstrap {
@@ -58,6 +62,11 @@ export class AppModule implements DoBootstrap {
 
   ngDoBootstrap() {
     const applicationWebComponent = createCustomElement(AppComponent, { injector: this.injector });
+    const notesInvoiceComponent = createCustomElement(NotesInvoiceComponent, {injector: this.injector});
+    const notesCollectionComponent = createCustomElement(NotesCollectionComponent, {injector: this.injector});
+
     customElements.define('ss-notes-ui', applicationWebComponent);
+    customElements.define('ss-notes-ui-notes-invoice', notesInvoiceComponent);
+    customElements.define('ss-notes-ui-notes-collection', notesCollectionComponent);
   }
 }
