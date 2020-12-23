@@ -10,7 +10,14 @@
         "Fld": "Automation03",
         "RecPrimId": "12",
         "CreatedDate": "2020-09-09",
-        "CreatedBy": "bstark@caidan"
+        "CreatedBy": "bstark@caidan",
+        "associatedId": "123456",
+        "associatedIdType": "System Assoc",
+        "module": "Payments",
+        "category": "Credit Memo",
+        "loadingType": "System",
+        "modifiedDate": "Today",
+        "modifiedBy": "Betty Sue"
       },
       {
         "NoteSk": 4,
@@ -23,7 +30,14 @@
         "Fld": "Automation03",
         "RecPrimId": "12",
         "CreatedDate": "2020-09-09",
-        "CreatedBy": "bstark@caidan"
+        "CreatedBy": "bstark@caidan",
+        "associatedId": "223456",
+        "associatedIdType": "User Assoc",
+        "module": "Billing / Payments",
+        "category": "Reco",
+        "loadingType": "User",
+        "modifiedDate": "Yesterday",
+        "modifiedBy": "Billy Joe"
       },
       {
         "NoteSk": 5,
@@ -35,7 +49,14 @@
         "Tbl": "INVOICE",
         "RecPrimId": "12",
         "CreatedDate": "2020-09-09",
-        "CreatedBy": "bstark@caidan"
+        "CreatedBy": "bstark@caidan",
+        "associatedId": "213456",
+        "associatedIdType": "User Assoc",
+        "module": "Billing / Payments",
+        "category": "Reco",
+        "loadingType": "User",
+        "modifiedDate": "Yesterday",
+        "modifiedBy": "Billy Joe"
       },
       {
         "NoteSk": 6,
@@ -47,6 +68,13 @@
         "Tbl": "INVOICE",
         "RecPrimId": "12",
         "CreatedDate": "2020-09-09",
-        "CreatedBy": "bstark@caidan"
+        "CreatedBy": "bstark@caidan",
+        "associatedId": "323456",
+        "associatedIdType": "Multiple",
+        "module": "Payments",
+        "category": "High Payment Amount",
+        "loadingType": "Bulk",
+        "modifiedDate": "Today",
+        "modifiedBy": "Betty Sue"
       }     
 ]

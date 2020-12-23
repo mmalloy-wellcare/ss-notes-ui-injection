@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectorRef, OnInit } from '@angular/core';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { SelectableSettings, GridComponent as KendoGridComponent, ColumnSortSettings } from '@progress/kendo-angular-grid';
 import { RowClassArgs } from '@progress/kendo-angular-grid';
 import { NotesCollections } from 'src/app/common/models/notes.model';
+import { NotesService } from 'src/app/services/notes.service';
+import { AlertsService } from '@nextgen/web-care-portal-core-library';
 
 @Component({
   selector: 'ss-notes-ui-notes-collection',
@@ -10,15 +12,19 @@ import { NotesCollections } from 'src/app/common/models/notes.model';
   styleUrls: ['./notes-collection.component.scss']
 })
 
-export class NotesCollectionComponent implements OnInit {
+export class NotesCollectionComponent implements OnInit, OnDestroy {
   notes: NotesCollections[] = [];
   public gridData = this.notes;
+
+  notesLoading;
+  notesData;
+  sub;
 
   private cellHeight = 43;
   private headerHeight = 53;
   private gridBuffer = 70;
 
-  public pageSize = 3; //notes.length
+  public pageSize = this.notes.length;
   public gridHeight = (this.pageSize * this.cellHeight) + this.headerHeight + this.gridBuffer;
 
   systemChecked = true;
@@ -26,11 +32,14 @@ export class NotesCollectionComponent implements OnInit {
 
   searchValue: any;
 
-constructor() {
-}
+constructor(
+  private notesService: NotesService,
+  private alertsService: AlertsService,
+  private changeDetectorRef: ChangeDetectorRef
+) {}
 
 ngOnInit() {
-  this.notes = [{
+ /*   this.notesData = [{
     "details": "These are the notes deatails.",
     "history": "",
     "noteId": "1",
@@ -75,9 +84,10 @@ ngOnInit() {
     "createdBy": "Sally Mae",
     "modifiedDate": "Today",
     "modifiedBy": "Betty Sue"
-}];
+}]; */
+ 
 
-  this.gridData = this.notes;
+  this.loadNotes({});
 }
 
 toggleSystemNotes() {
@@ -97,21 +107,40 @@ public rowCallback = (context: RowClassArgs) => {
 
 Search() {
   if(this.searchValue != ""){
-    this.gridData = this.gridData.filter(res => {
-      return res.details.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+     this.gridData = this.gridData.filter(res => {
+      return res.Note.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
              res.associatedId.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
              res.associatedIdType.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
              res.module.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
              res.category.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
-             res.title.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.NoteTitle.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
              res.loadingType.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
-             res.createdBy.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
-             res.modifiedBy.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase());
-    });
+             res.CreatedBy.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()) ||
+             res.modifiedBy.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()); 
+    }); 
   }else{
     this.ngOnInit();
   }
 
+}
+
+loadNotes(customHeader) {
+  this.notesLoading = true;
+  this.notesService.getNotesCollection('0', [], customHeader).subscribe(res => {
+    this.notes = res.data;
+    this.gridData = this.notes;
+    this.pageSize = this.notes.length;
+    this.gridHeight = (this.pageSize * this.cellHeight) + this.headerHeight + this.gridBuffer;
+    this.notesLoading = false;
+    this.changeDetectorRef.detectChanges();
+  }, (error) => {
+    this.alertsService.showErrorSnackbar(error);
+    this.notesLoading = false;
+  });
+}
+
+ngOnDestroy() {
+  this.sub.unsubscribe();
 }
 
 
