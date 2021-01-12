@@ -144,6 +144,16 @@
               <i class="fa fa-ellipsis-v"></i>
       </span>
       </ng-template>
+      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
+        <mat-form-field appearance="outline" class="cell-form-field">
+          <input 
+            [id]="'ss-notes-ui-category-row-' + rowIndex"
+            placeholder="*"
+            [formControl]="formGroup.get('category')" 
+            matInput 
+            required>
+        </mat-form-field>
+      </ng-template>
     </kendo-grid-column>
 
     <kendo-grid-column field="SendToCallCtrInd" title="Send To Call Center" width="200">
@@ -209,6 +219,16 @@
         <span class="column-sort-icon-container">
               <i class="fa fa-ellipsis-v"></i>
       </span>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex" let-dataItem>
+        <mat-form-field appearance="outline" class="cell-form-field">
+          <input 
+            [id]="'ss-notes-ui-loadingType-row-' + rowIndex"
+            placeholder="Manual"
+            [(ngModel)]='dataItem.loadingType' 
+            matInput 
+            disabled>
+        </mat-form-field>
       </ng-template>
     </kendo-grid-column> 
     <kendo-grid-column field="CreatedDate" title="Creation Date" width="200">

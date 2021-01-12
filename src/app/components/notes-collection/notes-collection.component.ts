@@ -339,7 +339,10 @@ initializeFormGroup(rowIndex: number) {
   this.formGroup = new FormGroup({
     NoteTitle: new FormControl(record.NoteTitle),
     module: new FormControl([record.module]),
-    Note : new FormControl([record.Note]),
+    category: new FormControl([record.category]),
+    SendToCallCtrInd: new FormControl([record.SendToCallCtrInd]),
+    loadingType: new FormControl([record.loadingType]),
+    Note : new FormControl([record.Note])
   });
 }
 
