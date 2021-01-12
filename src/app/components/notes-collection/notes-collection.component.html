@@ -77,6 +77,7 @@
           (click)="toggleHistoryRow(rowIndex, dataItem)">
           <i class="fa fa-history"></i>
         </button>  
+
         <button
           [id]="'pb-aol-config-save-btn-' + rowIndex"
           *ngIf="editModeRowIndex === rowIndex"
@@ -84,11 +85,8 @@
           color="primary"
           class="pb-aol-config-grid-save-btn"
           (click)="onSaveEntry(rowIndex, dataItem)"
-          [disabled]="formGroup.pristine || formGroup.invalid || savingEntry"
-        > 
-          <i 
-            [ngClass]="{'fa': true, 'fa-save': !savingEntry, 'fa-spin': savingEntry, 'fa-spinner': savingEntry}"
-          >
+          [disabled]="formGroup.pristine || formGroup.invalid || savingEntry"> 
+          <i [ngClass]="{'fa': true, 'fa-save': !savingEntry, 'fa-spin': savingEntry, 'fa-spinner': savingEntry}">
           </i> &nbsp; Save
         </button>
       </span>
@@ -103,20 +101,22 @@
       </span>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="associatedId" title="Associated ID" width="200">
+    <kendo-grid-column field="NoteTitle" title="Title" width="200">
       <ng-template kendoGridHeaderTemplate let-column="column">
         {{column.title}}
         <span class="column-sort-icon-container">
               <i class="fa fa-ellipsis-v"></i>
       </span>
       </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="associatedIdType" title="Associated ID Type" width="250">
-      <ng-template kendoGridHeaderTemplate let-column="column">
-        {{column.title}}
-        <span class="column-sort-icon-container">
-              <i class="fa fa-ellipsis-v"></i>
-      </span>
+      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
+        <mat-form-field appearance="outline" class="cell-form-field">
+          <input 
+            [id]="'ss-notes-ui-noteTitle-row-' + rowIndex"
+            placeholder="*"
+            [formControl]="formGroup.get('NoteTitle')" 
+            matInput 
+            required>
+        </mat-form-field>
       </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="module" title="Module" width="200">
@@ -145,24 +145,7 @@
       </span>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="NoteTitle" title="Title" width="200">
-      <ng-template kendoGridHeaderTemplate let-column="column">
-        {{column.title}}
-        <span class="column-sort-icon-container">
-              <i class="fa fa-ellipsis-v"></i>
-      </span>
-      </ng-template>
-      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
-        <mat-form-field appearance="outline" class="cell-form-field">
-          <input 
-            [id]="'ss-notes-ui-noteTitle-row-' + rowIndex"
-            placeholder="*"
-            [formControl]="formGroup.get('NoteTitle')" 
-            matInput 
-            required>
-        </mat-form-field>
-      </ng-template>
-    </kendo-grid-column>
+
     <kendo-grid-column field="SendToCallCtrInd" title="Send To Call Center" width="200">
       <ng-template kendoGridHeaderTemplate let-column="column">
         {{column.title}}
@@ -170,7 +153,56 @@
               <i class="fa fa-ellipsis-v"></i>
       </span>
       </ng-template>
+      <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
+        <mat-radio-button>
+          <input 
+            type="radio"
+            value="Yes"
+            [id]="'ss-notes-ui-sendToCallCenterYes-row-' + rowIndex">
+            <span>Yes &nbsp; </span>
+        </mat-radio-button>
+        <mat-radio-button>
+          <input 
+            type="radio"
+            value="No"
+            [id]="'ss-notes-ui-sendToCallCenterNo-row-' + rowIndex">
+            <span>No</span>
+        </mat-radio-button>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
+        <mat-radio-button>
+          <input 
+            type="radio"
+            value="Yes"
+            [id]="'ss-notes-ui-sendToCallCenterYes-row-' + rowIndex">
+            <span>Yes &nbsp; </span>
+        </mat-radio-button>
+        <mat-radio-button>
+          <input 
+            type="radio"
+            value="No"
+            [id]="'ss-notes-ui-sendToCallCenterNo-row-' + rowIndex">
+            <span>No</span>
+        </mat-radio-button>
+      </ng-template>
     </kendo-grid-column>
+    <kendo-grid-column field="associatedId" title="Associated ID" width="200">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="associatedIdType" title="Associated ID Type" width="250">
+      <ng-template kendoGridHeaderTemplate let-column="column">
+        {{column.title}}
+        <span class="column-sort-icon-container">
+              <i class="fa fa-ellipsis-v"></i>
+      </span>
+      </ng-template>
+    </kendo-grid-column>
+
     <kendo-grid-column field="loadingType" title="Loading Type" width="200">
       <ng-template kendoGridHeaderTemplate let-column="column">
         {{column.title}}
@@ -187,7 +219,7 @@
       </span>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="CreatedDate" title="Created By" width="200">
+    <kendo-grid-column field="CreatedBy" title="Created By" width="200">
       <ng-template kendoGridHeaderTemplate let-column="column">
         {{column.title}}
         <span class="column-sort-icon-container">

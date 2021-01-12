@@ -14,6 +14,7 @@ export class NotesCollections {
     modifiedDate: string;
     modifiedBy: string; */
     
+    TmpltTypeCode: string;
     NoteSk: string;
     NoteTitle: string;
     Note: string;
