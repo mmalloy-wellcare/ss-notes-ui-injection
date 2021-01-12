@@ -3,22 +3,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, DoBootstrap, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { createCustomElement } from '@angular/elements';
-import { EmptyModule } from '@nextgen/web-care-portal-core-library';
+import { EmptyModule, AlertsService, SortService } from '@nextgen/web-care-portal-core-library';
 import { NotesInvoiceComponent } from './components/notes-invoice/notes-invoice.component';
 import { NotesService } from './services/notes.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AlertsService } from '@nextgen/web-care-portal-core-library';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule, MatToolbarModule, MatCheckboxModule, MatButtonModule, 
+  MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatSelectModule, MatTooltipModule, MatDialogModule } from '@angular/material';
 import { GridModule } from '@progress/kendo-angular-grid';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotesCollectionComponent } from './components/notes-collection/notes-collection.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -39,6 +30,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
@@ -49,7 +41,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [NotesService, AlertsService],
+  providers: [
+    NotesService, 
+    AlertsService,
+    SortService
+  ],
   bootstrap: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [AppComponent,

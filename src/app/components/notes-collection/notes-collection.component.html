@@ -12,8 +12,13 @@
         </button>
     </span>
   </div>
+
   <span class="spacer"></span>
-  <button id="button-new" mat-stroked-button>
+  <button 
+    (click)="openSingleRowEdit(0, true)" 
+    mat-stroked-button
+    id="button-new"
+    [disabled]="!!gridEditMode || isArchive">
       <em class="fa fa-plus" aria-hidden="true"></em>&nbsp; New
   </button>
 </mat-toolbar>
@@ -27,11 +32,69 @@
     [pageSize]="pageSize" 
     [sortable]="true"
     [rowClass]="rowCallback">
-    <kendo-grid-column field="history" title="History" width="100">
-      <ng-template kendoGridCellTemplate let-dataItem let-column>
-          <em class="fa fa-history history-column"></em>
+
+    <ng-template kendoGridNoRecordsTemplate>
+      {{ gridData.length === 0 && gridLoading === false ? 'No records available.' : ''}}
+    </ng-template>
+
+    <kendo-grid-column field="edit" title="Edit" width="50" class="button-cell" [sortable]="false">
+      <ng-template kendoGridCellTemplate let-rowIndex="rowIndex" let-dataItem="dataItem">
+        <span>
+          <button
+            [id]="'pb-aol-config-edit-btn-' + rowIndex"
+            *ngIf="editModeRowIndex !== rowIndex"
+            mat-icon-button color="primary"
+            [disabled]="gridEditMode || isArchive"
+            (click)="openSingleRowEdit(rowIndex)">
+            <i class="fa fa-edit"></i>
+          </button>  
+          <button
+            [id]="'pb-aol-config-cancel-btn-left-' + rowIndex"
+            *ngIf="editModeRowIndex === rowIndex"
+            (click)="checkForm(rowIndex)"
+            mat-icon-button
+            color="warn"
+            [disabled]="savingEntry">
+            <i class="fa fa-window-close"></i>
+          </button>  
+        </span>
       </ng-template>
-    </kendo-grid-column>
+      </kendo-grid-column>
+
+      <kendo-grid-column 
+    title="History"
+    [width]="gridEditMode ? 85 : 70"
+    class="history-cell button-cell"
+  >
+    <ng-template kendoGridCellTemplate let-rowIndex="rowIndex" let-dataItem="dataItem">
+      <span [ngClass]="{'expanded-cell': expandedHistoryMap.get(dataItem.TmpltDataSrchSK)}">
+        <button
+          [id]="'pb-aol-config-history-btn-' + rowIndex"
+          *ngIf="editModeRowIndex !== rowIndex"
+          mat-icon-button
+          color="primary"
+          [disabled]="dataItem.CreatedTs === dataItem.ModifiedTs"
+          (click)="toggleHistoryRow(rowIndex, dataItem)">
+          <i class="fa fa-history"></i>
+        </button>  
+        <button
+          [id]="'pb-aol-config-save-btn-' + rowIndex"
+          *ngIf="editModeRowIndex === rowIndex"
+          mat-raised-button
+          color="primary"
+          class="pb-aol-config-grid-save-btn"
+          (click)="onSaveEntry(rowIndex, dataItem)"
+          [disabled]="formGroup.pristine || formGroup.invalid || savingEntry"
+        > 
+          <i 
+            [ngClass]="{'fa': true, 'fa-save': !savingEntry, 'fa-spin': savingEntry, 'fa-spinner': savingEntry}"
+          >
+          </i> &nbsp; Save
+        </button>
+      </span>
+    </ng-template>
+  </kendo-grid-column>
+
     <kendo-grid-column field="NoteSk" title="Note ID" width="150">
       <ng-template kendoGridHeaderTemplate let-column="column">
         {{column.title}}
@@ -63,6 +126,16 @@
               <i class="fa fa-ellipsis-v"></i>
       </span>
       </ng-template>
+      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
+        <mat-form-field appearance="outline" class="cell-form-field">
+          <input 
+            [id]="'ss-notes-ui-module-row-' + rowIndex"
+            placeholder="*"
+            [formControl]="formGroup.get('module')" 
+            matInput 
+            required>
+        </mat-form-field>
+      </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="category" title="Category" width="200">
       <ng-template kendoGridHeaderTemplate let-column="column">
@@ -78,6 +151,16 @@
         <span class="column-sort-icon-container">
               <i class="fa fa-ellipsis-v"></i>
       </span>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
+        <mat-form-field appearance="outline" class="cell-form-field">
+          <input 
+            [id]="'ss-notes-ui-noteTitle-row-' + rowIndex"
+            placeholder="*"
+            [formControl]="formGroup.get('NoteTitle')" 
+            matInput 
+            required>
+        </mat-form-field>
       </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="SendToCallCtrInd" title="Send To Call Center" width="200">
@@ -128,7 +211,14 @@
       </span>
       </ng-template>
     </kendo-grid-column>
-      <ng-template kendoGridDetailTemplate let-dataItem>
-        <p>{{dataItem.Note}}</p>
-      </ng-template>
+    <ng-template kendoGridDetailTemplate kendoGridEditTemplate let-rowIndex="rowIndex" let-dataItem>
+      <mat-form-field appearance="outline" class="cell-form-field">
+        <input 
+          [id]="'ss-notes-ui-note-row-' + rowIndex"
+          [(ngModel)]='dataItem.Note'
+          placeholder="{{dataItem.Note}}"
+          matInput 
+          required>
+      </mat-form-field>
+    </ng-template>
 </kendo-grid>
