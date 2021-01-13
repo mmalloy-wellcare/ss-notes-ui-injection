@@ -316,7 +316,7 @@ onSaveEntry(rowIndex: number, record: NotesCollections) {
 
 openSingleRowEdit(rowIndex: number, addMode?: boolean) {
    if (addMode) {
-    //this.gridData.unshift({});
+    this.gridData.unshift();
     //this.retoggleHistoryRows();
   } else {
     //this.kendoGrid.collapseRow(rowIndex);

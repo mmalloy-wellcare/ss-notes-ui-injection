@@ -163,34 +163,25 @@
               <i class="fa fa-ellipsis-v"></i>
       </span>
       </ng-template>
-      <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
-        <mat-radio-button>
-          <input 
-            type="radio"
-            value="Yes"
-            [id]="'ss-notes-ui-sendToCallCenterYes-row-' + rowIndex">
-            <span>Yes &nbsp; </span>
-        </mat-radio-button>
-        <mat-radio-button>
-          <input 
-            type="radio"
-            value="No"
-            [id]="'ss-notes-ui-sendToCallCenterNo-row-' + rowIndex">
-            <span>No</span>
-        </mat-radio-button>
+      <ng-template kendoGridCellTemplate let-rowIndex="rowIndex" let-dataItem>
+        <div *ngIf="dataItem.SendToCallCtrInd === 1; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>Yes</ng-template>
+        <ng-template #elseBlock>No</ng-template>
       </ng-template>
-      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
+      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex" let-dataItem>
         <mat-radio-button>
           <input 
             type="radio"
-            value="Yes"
+            [value]=1
+            [(ngModel)]='dataItem.SendToCallCtrInd'
             [id]="'ss-notes-ui-sendToCallCenterYes-row-' + rowIndex">
             <span>Yes &nbsp; </span>
         </mat-radio-button>
         <mat-radio-button>
           <input 
             type="radio"
-            value="No"
+            [value]=0
+            [(ngModel)]='dataItem.SendToCallCtrInd'
             [id]="'ss-notes-ui-sendToCallCenterNo-row-' + rowIndex">
             <span>No</span>
         </mat-radio-button>
@@ -263,14 +254,17 @@
       </span>
       </ng-template>
     </kendo-grid-column>
-    <ng-template kendoGridDetailTemplate kendoGridEditTemplate let-rowIndex="rowIndex" let-dataItem>
-      <mat-form-field appearance="outline" class="cell-form-field">
-        <input 
-          [id]="'ss-notes-ui-note-row-' + rowIndex"
-          [(ngModel)]='dataItem.Note'
-          placeholder="{{dataItem.Note}}"
-          matInput 
-          required>
-      </mat-form-field>
+    <ng-template kendoGridDetailTemplate let-rowIndex="rowIndex" let-dataItem>
+      <div *ngIf="gridEditMode; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock kendoGridDetailTemplate kendoGridEditTemplate let-rowIndex="rowIndex">
+          <mat-form-field appearance="outline" class="cell-form-field">
+            <input 
+              [id]="'ss-notes-ui-note-row-' + rowIndex"
+              placeholder="{{dataItem.Note}}"
+              [(ngModel)]='dataItem.Note'
+              matInput>
+          </mat-form-field>
+        </ng-template>
+        <ng-template #elseBlock><p>{{dataItem.Note}}</p></ng-template>
     </ng-template>
 </kendo-grid>

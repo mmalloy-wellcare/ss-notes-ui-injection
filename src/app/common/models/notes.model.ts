@@ -19,7 +19,7 @@ export class NotesCollections {
     NoteTitle: string;
     Note: string;
     NoteCatgTypeCode: string;
-    SendToCallCtrInd: string;
+    SendToCallCtrInd: number;
     SvcTypeCode: string;
     Tbl: string;
     Fld: string;
