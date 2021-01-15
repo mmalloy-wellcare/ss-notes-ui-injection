@@ -29,9 +29,16 @@ export class NotesCollectionComponent extends ScrollableGridComponent implements
     return this.tmpltTypeCodeInput;
   }
 
+  @Input() set primId(primaryId: string) {
+    this.subId = `${primaryId}`;
+    this.loadNotes({ primId: this.subId, primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'});
+  }
+
 
   notes: NotesCollections[] = [];
   public gridData = this.notes;
+
+  private subId;
 
   notesLoading;
   notesData;
@@ -72,56 +79,13 @@ constructor(
   }); */
 }
 
-ngOnInit() {
- /*   this.notesData = [{
-    "details": "These are the notes deatails.",
-    "history": "",
-    "noteId": "1",
-    "associatedId": "123456",
-    "associatedIdType": "System Assoc",
-    "module": "Payments",
-    "category": "Credit Memo",
-    "title": "Pending Another Department",
-    "sendToCallCenter": "Yes",
-    "loadingType": "System",
-    "creationDate": "Today",
-    "createdBy": "Billy Joe",
-    "modifiedDate": "Today",
-    "modifiedBy": "Betty Sue"
-  }, {
-    "details": "Or is it notes history?",
-    "history": "",
-    "noteId": "2",
-    "associatedId": "223456",
-    "associatedIdType": "User Assoc",
-    "module": "Billing / Payments",
-    "category": "Reco",
-    "title": "Correspondence Required",
-    "sendToCallCenter": "No",
-    "loadingType": "User",
-    "creationDate": "Yesterday",
-    "createdBy": "Billy Bob",
-    "modifiedDate": "Yesterday",
-    "modifiedBy": "Billy Joe"
-  }, {
-    "details": "Who knows!",
-    "history": "",
-    "noteId": "3",
-    "associatedId": "323456",
-    "associatedIdType": "Multiple",
-    "module": "Payments",
-    "category": "High Payment Amount",
-    "title": "Workflow Status Pending",
-    "sendToCallCenter": "Yes",
-    "loadingType": "Bulk",
-    "creationDate": "Today",
-    "createdBy": "Sally Mae",
-    "modifiedDate": "Today",
-    "modifiedBy": "Betty Sue"
-}]; */
- 
+get primId() {
+  return this.subId;
+}
 
-  this.loadNotes({});
+ngOnInit() {
+  console.log("Initialization");
+  console.log(this.primId);
 }
 
 toggleSystemNotes() {
@@ -316,20 +280,48 @@ onSaveEntry(rowIndex: number, record: NotesCollections) {
 
 openSingleRowEdit(rowIndex: number, addMode?: boolean) {
    if (addMode) {
-    this.gridData.unshift();
+    this.gridData.unshift({
+    TmpltTypeCode: "add",
+    NoteSk: "",
+    NoteTitle: "*",
+    Note: "*",
+    NoteCatgTypeCode: "*",
+    SendToCallCtrInd: 1,
+    SvcTypeCode: "",
+    Tbl: "",
+    Fld: "",
+    RecPrimId: "",
+    CreatedDate: "",
+    CreatedBy: "",
+    associatedId: "",
+    associatedIdType: "",
+    module: "*",
+    category: "*",
+    loadingType: "Manual",
+    modifiedDate: "",
+    modifiedBy: "",
+    primId: this.subId,
+    primIdTypeCode: "subscriberId"
+    });
     //this.retoggleHistoryRows();
+    this.formGroup = undefined;
+    this.initializeFormGroup(rowIndex);
+    this.newRecord = addMode;
+    this.gridEditMode = true;
+    this.editModeRowIndex = rowIndex;
+    this.originalGridData = [...this.gridData]; 
+    this.kendoGrid.addRow(this.formGroup);
   } else {
     //this.kendoGrid.collapseRow(rowIndex);
     //this.expandedHistoryMap.delete(this.gridData[rowIndex].TmpltDataSrchSK);
+    this.formGroup = undefined;
+    this.initializeFormGroup(rowIndex);
+    this.newRecord = addMode;
+    this.gridEditMode = true;
+    this.editModeRowIndex = rowIndex;
+    this.originalGridData = [...this.gridData]; 
+    this.kendoGrid.editRow(rowIndex, this.formGroup);
   } 
-
-  this.formGroup = undefined;
-  this.initializeFormGroup(rowIndex);
-  this.newRecord = addMode;
-  this.gridEditMode = true;
-  this.editModeRowIndex = rowIndex;
-  this.originalGridData = [...this.gridData]; 
-  this.kendoGrid.editRow(rowIndex, this.formGroup);
 
 }
 

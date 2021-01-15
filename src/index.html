@@ -8,10 +8,16 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <ss-notes-ui></ss-notes-ui>
-  <ss-notes-ui-notes-collection></ss-notes-ui-notes-collection>
-  <ss-notes-ui-notes-invoice></ss-notes-ui-notes-invoice>
+  <ss-notes-ui-notes-collection-cmpt></ss-notes-ui-notes-collection-cmpt>
+  <ss-notes-ui-notes-invoice-cmpt></ss-notes-ui-notes-invoice-cmpt>
   <script>
+    const notesInvoice = document.getElementsByTagName('ss-notes-ui-notes-invoice-cmpt')[0];
+    const notesCollection = document.getElementsByTagName('ss-notes-ui-notes-collection-cmpt')[0];
+    document.addEventListener('DOMContentLoaded', () => {
+      notesInvoice.recPrimId = '12';
+      notesCollection.primId = '827321841';
+    });
+
     localStorage.setItem('wcp-core-state-accessToken', '"insert-valid-access-token"');
   </script>
 </body>

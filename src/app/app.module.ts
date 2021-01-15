@@ -11,8 +11,8 @@ import { MatSnackBarModule, MatToolbarModule, MatCheckboxModule, MatButtonModule
   MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatSelectModule, MatTooltipModule, MatDialogModule } from '@angular/material';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { NotesCollectionComponent } from './components/notes-collection/notes-collection.component';
-import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -36,10 +36,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    AppRoutingModule,
     EmptyModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot([])
   ],
   providers: [
     NotesService, 
@@ -62,7 +62,7 @@ export class AppModule implements DoBootstrap {
     const notesCollectionComponent = createCustomElement(NotesCollectionComponent, {injector: this.injector});
 
     customElements.define('ss-notes-ui', applicationWebComponent);
-    customElements.define('ss-notes-ui-notes-invoice', notesInvoiceComponent);
-    customElements.define('ss-notes-ui-notes-collection', notesCollectionComponent);
+    customElements.define('ss-notes-ui-notes-invoice-cmpt', notesInvoiceComponent);
+    customElements.define('ss-notes-ui-notes-collection-cmpt', notesCollectionComponent);
   }
 }

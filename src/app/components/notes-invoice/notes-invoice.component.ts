@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertsService } from '@nextgen/web-care-portal-core-library';
 import { NotesService } from 'src/app/services/notes.service';
@@ -8,7 +8,11 @@ import { NotesService } from 'src/app/services/notes.service';
   templateUrl: './notes-invoice.component.html',
   styleUrls: ['./notes-invoice.component.scss']
 })
-export class NotesInvoiceComponent implements OnInit, OnDestroy {
+export class NotesInvoiceComponent implements OnDestroy {
+  @Input() set recPrimId(recPrimaryId: string) {
+    this.recId = `${recPrimaryId}`;
+    this.loadNotes({recPrimId: this.recId , svcTypeCode: 'ARMGR', tbl: 'INVOICE'});
+  }
 
   notesLoading;
   notesData;
@@ -21,16 +25,6 @@ export class NotesInvoiceComponent implements OnInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private routes: ActivatedRoute
   ) { }
-
-  ngOnInit() {
-    //passing recPrimId through the router now
-    this.sub = this.routes
-    .data
-    .subscribe( val => {
-      this.recId = val;
-    });
-    this.loadNotes({recPrimId: this.recId , svcTypeCode: 'ARMGR', tbl: 'INVOICE'});
-  }
 
   get recPrimId() {
     return this.recId;

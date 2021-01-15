@@ -33,4 +33,6 @@ export class NotesCollections {
     loadingType: string;
     modifiedDate: string;
     modifiedBy: string;
+    primId: string;
+    primIdTypeCode: string;
 }

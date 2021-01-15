@@ -255,7 +255,7 @@
       </ng-template>
     </kendo-grid-column>
     <ng-template kendoGridDetailTemplate let-rowIndex="rowIndex" let-dataItem>
-      <div *ngIf="gridEditMode; then thenBlock else elseBlock"></div>
+       <div *ngIf="gridEditMode; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock kendoGridDetailTemplate kendoGridEditTemplate let-rowIndex="rowIndex">
           <mat-form-field appearance="outline" class="cell-form-field">
             <input 

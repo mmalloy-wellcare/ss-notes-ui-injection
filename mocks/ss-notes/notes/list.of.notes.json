@@ -17,7 +17,9 @@
         "category": "Credit Memo",
         "loadingType": "System",
         "modifiedDate": "Today",
-        "modifiedBy": "Betty Sue"
+        "modifiedBy": "Betty Sue",
+        "primIdTypeCode": "subscriberId",
+        "primId": "827321841"
       },
       {
         "NoteSk": 4,
@@ -37,7 +39,9 @@
         "category": "Reco",
         "loadingType": "User",
         "modifiedDate": "Yesterday",
-        "modifiedBy": "Billy Joe"
+        "modifiedBy": "Billy Joe",
+        "primIdTypeCode": "subscriberId",
+        "primId": "827321841"
       },
       {
         "NoteSk": 5,
@@ -56,7 +60,9 @@
         "category": "Reco",
         "loadingType": "User",
         "modifiedDate": "Yesterday",
-        "modifiedBy": "Billy Joe"
+        "modifiedBy": "Billy Joe",
+        "primIdTypeCode": "subscriberId",
+        "primId": "827321841"
       },
       {
         "NoteSk": 6,
@@ -75,6 +81,8 @@
         "category": "High Payment Amount",
         "loadingType": "Bulk",
         "modifiedDate": "Today",
-        "modifiedBy": "Betty Sue"
+        "modifiedBy": "Betty Sue",
+        "primIdTypeCode": "subscriberId",
+        "primId": "827321841"
       }     
 ]
