@@ -8,7 +8,7 @@ import { NotesService } from 'src/app/services/notes.service';
   templateUrl: './notes-invoice.component.html',
   styleUrls: ['./notes-invoice.component.scss']
 })
-export class NotesInvoiceComponent implements OnDestroy {
+export class NotesInvoiceComponent {
   @Input() set recPrimId(recPrimaryId: string) {
     this.recId = `${recPrimaryId}`;
     this.loadNotes({recPrimId: this.recId , svcTypeCode: 'ARMGR', tbl: 'INVOICE'});
@@ -42,7 +42,4 @@ export class NotesInvoiceComponent implements OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
 }

@@ -1,14 +1,33 @@
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick, inject } from '@angular/core/testing';
 import { NotesCollectionComponent } from './notes-collection.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { FormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { SortService, AlertsService } from '@nextgen/web-care-portal-core-library';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { of } from 'rxjs';
+import { NotesService } from 'src/app/services/notes.service';
 
 describe('NotesCollectionComponent', () => {
   let component: NotesCollectionComponent;
   let fixture: ComponentFixture<NotesCollectionComponent>;
+
+  const sortService: Partial<SortService> = {
+    convertSort() {}
+  };
+  const alertsService: Partial<AlertsService> = {
+    showErrorSnackbar() { },
+    showSuccessSnackbar() {}
+  };
+  const notesService: Partial<NotesService> = {
+    getNotes() {
+      return of({
+        data: []
+      });
+    }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,6 +38,18 @@ describe('NotesCollectionComponent', () => {
         GridModule,
         FormsModule
       ],
+      providers: [
+        HttpClientTestingModule,
+        {
+        provide: AlertsService,
+        useValue: alertsService
+      }, {
+        provide: SortService,
+        useValue: sortService
+      }, {
+        provide: NotesService,
+        useValue: notesService
+      }],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
@@ -43,7 +74,7 @@ describe('NotesCollectionComponent', () => {
   });
 
   describe('toggleUserNotes', () => {
-    it('should toggle row with loading type Manual', () => {
+    it('should toggle row with loading type User', () => {
       component.userChecked = true;
       component.toggleUserNotes();
       expect(component.userChecked).toEqual(false);

@@ -14,13 +14,18 @@
   </div>
 
   <span class="spacer"></span>
-  <button 
+<!--   <button 
     (click)="openSingleRowEdit(0, true)" 
     mat-stroked-button
     id="button-new"
     [disabled]="!!gridEditMode || isArchive">
       <em class="fa fa-plus" aria-hidden="true"></em>&nbsp; New
-  </button>
+  </button>  -->
+  <button 
+  mat-stroked-button
+  id="button-new">
+    <em class="fa fa-plus" aria-hidden="true"></em>&nbsp; New
+</button> 
 </mat-toolbar>
 
  <kendo-grid
@@ -33,11 +38,11 @@
     [sortable]="true"
     [rowClass]="rowCallback">
 
-    <ng-template kendoGridNoRecordsTemplate>
+<!--     <ng-template kendoGridNoRecordsTemplate>
       {{ gridData.length === 0 && gridLoading === false ? 'No records available.' : ''}}
-    </ng-template>
+    </ng-template> -->
 
-    <kendo-grid-column field="edit" title="Edit" width="50" class="button-cell" [sortable]="false">
+ <!--   <kendo-grid-column field="edit" title="Edit" width="50" class="button-cell" [sortable]="false">
       <ng-template kendoGridCellTemplate let-rowIndex="rowIndex" let-dataItem="dataItem">
         <span>
           <button
@@ -61,7 +66,7 @@
       </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column 
+       <kendo-grid-column 
     title="History"
     [width]="gridEditMode ? 85 : 70"
     class="history-cell button-cell"
@@ -91,7 +96,7 @@
         </button>
       </span>
     </ng-template>
-  </kendo-grid-column>
+  </kendo-grid-column> -->
 
     <kendo-grid-column field="NoteSk" title="Note ID" width="150">
       <ng-template kendoGridHeaderTemplate let-column="column">
@@ -108,7 +113,7 @@
               <i class="fa fa-ellipsis-v"></i>
       </span>
       </ng-template>
-      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
+<!--       <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
         <mat-form-field appearance="outline" class="cell-form-field">
           <input 
             [id]="'ss-notes-ui-noteTitle-row-' + rowIndex"
@@ -117,7 +122,7 @@
             matInput 
             required>
         </mat-form-field>
-      </ng-template>
+      </ng-template> -->
     </kendo-grid-column>
     <kendo-grid-column field="module" title="Module" width="200">
       <ng-template kendoGridHeaderTemplate let-column="column">
@@ -126,7 +131,7 @@
               <i class="fa fa-ellipsis-v"></i>
       </span>
       </ng-template>
-      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
+<!--       <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
         <mat-form-field appearance="outline" class="cell-form-field">
           <input 
             [id]="'ss-notes-ui-module-row-' + rowIndex"
@@ -135,7 +140,7 @@
             matInput 
             required>
         </mat-form-field>
-      </ng-template>
+      </ng-template> -->
     </kendo-grid-column>
     <kendo-grid-column field="category" title="Category" width="200">
       <ng-template kendoGridHeaderTemplate let-column="column">
@@ -144,7 +149,7 @@
               <i class="fa fa-ellipsis-v"></i>
       </span>
       </ng-template>
-      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
+<!--       <ng-template kendoGridEditTemplate let-rowIndex="rowIndex">
         <mat-form-field appearance="outline" class="cell-form-field">
           <input 
             [id]="'ss-notes-ui-category-row-' + rowIndex"
@@ -153,7 +158,7 @@
             matInput 
             required>
         </mat-form-field>
-      </ng-template>
+      </ng-template> -->
     </kendo-grid-column>
 
     <kendo-grid-column field="SendToCallCtrInd" title="Send To Call Center" width="200">
@@ -168,7 +173,7 @@
         <ng-template #thenBlock>Yes</ng-template>
         <ng-template #elseBlock>No</ng-template>
       </ng-template>
-      <ng-template kendoGridEditTemplate let-rowIndex="rowIndex" let-dataItem>
+<!--       <ng-template kendoGridEditTemplate let-rowIndex="rowIndex" let-dataItem>
         <mat-radio-button>
           <input 
             type="radio"
@@ -185,7 +190,7 @@
             [id]="'ss-notes-ui-sendToCallCenterNo-row-' + rowIndex">
             <span>No</span>
         </mat-radio-button>
-      </ng-template>
+      </ng-template> -->
     </kendo-grid-column>
     <kendo-grid-column field="associatedId" title="Associated ID" width="200">
       <ng-template kendoGridHeaderTemplate let-column="column">
@@ -254,9 +259,10 @@
       </span>
       </ng-template>
     </kendo-grid-column>
-    <ng-template kendoGridDetailTemplate let-rowIndex="rowIndex" let-dataItem>
-       <div *ngIf="gridEditMode; then thenBlock else elseBlock"></div>
-        <ng-template #thenBlock kendoGridDetailTemplate kendoGridEditTemplate let-rowIndex="rowIndex">
+    <ng-template kendoGridDetailTemplate let-dataItem>
+      <p>{{dataItem.Note}}</p>
+      <!-- <div *ngIf="gridEditMode; then thenBlock else elseBlock"></div>
+         <ng-template #thenBlock kendoGridDetailTemplate kendoGridEditTemplate let-rowIndex="rowIndex">
           <mat-form-field appearance="outline" class="cell-form-field">
             <input 
               [id]="'ss-notes-ui-note-row-' + rowIndex"
@@ -264,7 +270,7 @@
               [(ngModel)]='dataItem.Note'
               matInput>
           </mat-form-field>
-        </ng-template>
-        <ng-template #elseBlock><p>{{dataItem.Note}}</p></ng-template>
+        </ng-template> 
+        <ng-template #elseBlock><p>{{dataItem.Note}}</p></ng-template>  -->
     </ng-template>
 </kendo-grid>

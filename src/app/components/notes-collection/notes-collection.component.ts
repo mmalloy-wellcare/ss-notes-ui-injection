@@ -11,14 +11,15 @@ import { TemplatesService } from '../../services/templates.service';
   selector: 'ss-notes-ui-notes-collection',
   templateUrl: './notes-collection.component.html',
   styleUrls: ['./notes-collection.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  //encapsulation: ViewEncapsulation.None
 })
 
-export class NotesCollectionComponent extends ScrollableGridComponent implements OnInit, OnDestroy {
-  @HostBinding('class.web-component-flex') webComponentFlex = true;
+//export class NotesCollectionComponent extends ScrollableGridComponent implements OnInit, OnDestroy
+export class NotesCollectionComponent implements OnInit, OnDestroy {
+  //@HostBinding('class.web-component-flex') webComponentFlex = true;
 
   private tmpltTypeCodeInput: string;
-
+/* 
   @Input() set tmpltTypeCode(id: string) {
     this.tmpltTypeCodeInput = id;
     this.restartRowId = '0';
@@ -27,7 +28,7 @@ export class NotesCollectionComponent extends ScrollableGridComponent implements
 
   get tmpltTypeCode(): string {
     return this.tmpltTypeCodeInput;
-  }
+  } */
 
   @Input() set primId(primaryId: string) {
     this.subId = `${primaryId}`;
@@ -44,12 +45,12 @@ export class NotesCollectionComponent extends ScrollableGridComponent implements
   notesData;
   sub;
 
-  expandedHistoryMap = new Map();
+  //expandedHistoryMap = new Map();
   formGroup: FormGroup;
   editModeRowIndex: number;
 
   savingEntry;
-  isArchive = false;
+  //isArchive = false;
 
   private cellHeight = 43;
   private headerHeight = 53;
@@ -65,15 +66,15 @@ export class NotesCollectionComponent extends ScrollableGridComponent implements
 
 constructor(
   public alertsService: AlertsService,
-  public templatesService: TemplatesService,
+  //public templatesService: TemplatesService,
   public sortService: SortService,
-  public dialog: MatDialog,
+  //public dialog: MatDialog,
   private changeDetectorRef: ChangeDetectorRef,
   //private validationService: ValidationService,
   private notesService: NotesService
 ) {
-  super(sortService, alertsService);
-  console.log("Complete Super Constructor");
+  //super(sortService, alertsService);
+  //console.log("Complete Super Constructor");
 /*   this.listsService.getListDetails('State', '0', [{ property: 'DisplayName', direction: 'asc' }]).subscribe((response) => {
     this.statesOptions = response.data;
   }); */
@@ -84,8 +85,9 @@ get primId() {
 }
 
 ngOnInit() {
-  console.log("Initialization");
-  console.log(this.primId);
+  //console.log("Initialization");
+  //console.log(this.primId);
+  this.loadNotes({ primId: this.subId, primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'});
 }
 
 toggleSystemNotes() {
@@ -94,6 +96,7 @@ toggleSystemNotes() {
 
 toggleUserNotes() {
   this.userChecked = !this.userChecked;
+  console.log(this.userChecked);
 }
 
 public rowCallback = (context: RowClassArgs) => {
@@ -132,7 +135,7 @@ loadNotes(customHeader) {
     this.notesLoading = false;
     this.changeDetectorRef.detectChanges();
   }, (error) => {
-    this.alertsService.showErrorSnackbar(error);
+    //this.alertsService.showErrorSnackbar(error);
     this.notesLoading = false;
   });
 }
@@ -144,7 +147,7 @@ ngOnDestroy() {
 
 //New Record (Editable Row)
 
- toggleHistoryRow(rowIndex: number, dataItem: NotesCollections) {
+//  toggleHistoryRow(rowIndex: number, dataItem: NotesCollections) {
 /*   const TmpltDataSrchSK = dataItem.TmpltDataSrchSK;
 
   if (this.expandedHistoryMap.get(TmpltDataSrchSK)) {
@@ -166,7 +169,7 @@ ngOnDestroy() {
   });
 }  */
 
-getNotesTemplate(formValues: any, record: NotesCollections) {
+/*getNotesTemplate(formValues: any, record: NotesCollections) {
   return {
     TmpltTypeCode: this.tmpltTypeCode,
     NoteSk: record.NoteSk,
@@ -237,7 +240,7 @@ onSaveEntry(rowIndex: number, record: NotesCollections) {
   const updateObservables: Array<any> = this.getTemplateObservables(notesTemplates, this.formGroup.get('idempotencyKey').value);
   let actionType: string;
   this.savingEntry = true;
-
+ */
 /*   if (this.newRecord) {
     this.getAddTemplateObservable(configTemplates, this.formGroup.get('idempotencyKey').value).subscribe((templates) => {
       this.onSuccess(templates, rowIndex);
@@ -276,9 +279,9 @@ onSaveEntry(rowIndex: number, record: NotesCollections) {
       }
     );
   } */
-}
+//}
 
-openSingleRowEdit(rowIndex: number, addMode?: boolean) {
+/* openSingleRowEdit(rowIndex: number, addMode?: boolean) {
    if (addMode) {
     this.gridData.unshift({
     TmpltTypeCode: "add",
@@ -356,7 +359,7 @@ checkForm(rowIndex: number) {
         this.closeSingleRowEdit(rowIndex, false);
       }
     });
-  } */
+  } 
 }
 
 closeSingleRowEdit(rowIndex: number, updateAction: boolean) {
@@ -377,10 +380,9 @@ closeSingleRowEdit(rowIndex: number, updateAction: boolean) {
   this.idempotencyKey = null;
   this.gridDataForm.markAsPristine();
   this.gridLoading = false;
-}
+} 
 
-
-}
+}*/
 
 
 

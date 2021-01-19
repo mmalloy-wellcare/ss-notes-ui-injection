@@ -93,10 +93,6 @@
     display: none;
 } */
 
-::ng-deep .k-grid tr.hidecheckedrow {
-   display: none;
-}
-
 .column-sort-icon-container {
     font-size: 1.2em;
     float: right;
@@ -113,7 +109,11 @@
    overflow-y: visible!important;
 } 
 
-::ng-deep #notesGrid .k-grid .k-hierarchy-cell .k-icon{
+::ng-deep .k-grid tr.hidecheckedrow {
+    display: none!important;
+ }
+
+/* ::ng-deep #notesGrid .k-grid .k-hierarchy-cell .k-icon{
     background-color: #107ba4!important;
     color: white!important;
     padding: .1em!important;
@@ -121,12 +121,13 @@
     font-size: 1.3rem!important;
     width: 1.3rem!important;
     height: 1.3rem!important;
-}
+} */
 
 /* ::ng-deep .k-grid .k-hierarchy-cell{
     border-right: 1px solid rgba(0, 0, 0, 0.12);
 } */
 
-::ng-deep .k-grid{
+/* ::ng-deep .k-grid{
     height: 100%;
-}
+} */
+
