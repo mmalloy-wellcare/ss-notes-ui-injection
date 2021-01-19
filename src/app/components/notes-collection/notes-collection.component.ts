@@ -15,8 +15,8 @@ import { TemplatesService } from '../../services/templates.service';
 })
 
 //export class NotesCollectionComponent extends ScrollableGridComponent implements OnInit, OnDestroy
-export class NotesCollectionComponent implements OnInit, OnDestroy {
-  //@HostBinding('class.web-component-flex') webComponentFlex = true;
+export class NotesCollectionComponent extends ScrollableGridComponent implements OnInit, OnDestroy {
+  @HostBinding('class.web-component-flex') webComponentFlex = true;
 
   private tmpltTypeCodeInput: string;
 /* 
@@ -73,7 +73,7 @@ constructor(
   //private validationService: ValidationService,
   private notesService: NotesService
 ) {
-  //super(sortService, alertsService);
+  super(sortService, alertsService);
   //console.log("Complete Super Constructor");
 /*   this.listsService.getListDetails('State', '0', [{ property: 'DisplayName', direction: 'asc' }]).subscribe((response) => {
     this.statesOptions = response.data;
