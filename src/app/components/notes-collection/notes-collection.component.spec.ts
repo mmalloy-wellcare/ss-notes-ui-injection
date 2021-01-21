@@ -22,8 +22,8 @@ describe('NotesCollectionComponent', () => {
         "Note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "NoteCatgTypeCode": "Automation02",
         "SendToCallCtrInd": 1,
-        "SvcTypeCode": "ARBILL",
-        "Tbl": "INVOICE",
+        "svcTypeCode": "ARBILL",
+        "tbl": "INVOICE",
         "Fld": "Automation03",
         "RecPrimId": "12",
         "CreatedDate": "2020-09-09",
@@ -44,8 +44,8 @@ describe('NotesCollectionComponent', () => {
         "Note": "Automation02",
         "NoteCatgTypeCode": "Automation02",
         "SendToCallCtrInd": 0,
-        "SvcTypeCode": "ARBILL",
-        "Tbl": "INVOICE",
+        "svcTypeCode": "ARBILL",
+        "tbl": "INVOICE",
         "Fld": "Automation03",
         "RecPrimId": "12",
         "CreatedDate": "2020-09-09",
@@ -66,8 +66,8 @@ describe('NotesCollectionComponent', () => {
         "Note": "Automation02",
         "NoteCatgTypeCode": "Automation02",
         "SendToCallCtrInd": 1,
-        "SvcTypeCode": "ARBILL",
-        "Tbl": "INVOICE",
+        "svcTypeCode": "ARBILL",
+        "tbl": "INVOICE",
         "Fld": "Automation03",
         "RecPrimId": "12",
         "CreatedDate": "2020-09-09",
@@ -88,8 +88,8 @@ describe('NotesCollectionComponent', () => {
         "Note": "Payment Processed",
         "NoteCatgTypeCode": "Automation02",
         "SendToCallCtrInd": 0,
-        "SvcTypeCode": "ARMGR",
-        "Tbl": "INVOICE",
+        "svcTypeCode": "ARMGR",
+        "tbl": "INVOICE",
         "Fld": "Automation03",
         "RecPrimId": "12",
         "CreatedDate": "2020-09-09",
@@ -156,6 +156,16 @@ describe('NotesCollectionComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should show error snackbar if error is thrown', inject(
+    [NotesService, AlertsService], (notesServiceInject, alertsServiceInject) => {
+      spyOn(alertsServiceInject, 'showErrorSnackbar');
+      spyOn(notesServiceInject, 'getNotesCollection').and.returnValue(throwError({ status: 404 }));
+
+      component.loadNotes({ primId: '827321841', primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'});
+      expect(alertsServiceInject.showErrorSnackbar).toHaveBeenCalled();
+    })
+  );
+
   it('should set primId and load notes data', () => {
     component.primId = '827321841';
     component.loadNotes({ primId: component.primId, primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'});
@@ -220,12 +230,19 @@ describe('NotesCollectionComponent', () => {
     });
 
      it('should show all grid rows when searchValue is erased', () => {
-      spyOn(component, 'ngOnInit');
+      spyOn(component, 'reloadNotes');
       component.gridData = mockGridData;
       component.searchValue = "";
       component.Search();
       expect(component.gridData.length).toEqual(4);
     });   
+
+    it('should reloadNotes when searchValue is erased', () => {
+      component.gridData = mockGridData;
+      component.searchValue = "";
+      component.reloadNotes();
+      expect(component.gridData.length).toEqual(0);
+    }); 
   }); 
 
 

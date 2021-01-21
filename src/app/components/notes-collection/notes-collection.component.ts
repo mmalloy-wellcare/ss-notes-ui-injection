@@ -14,8 +14,13 @@ import { TemplatesService } from '../../services/templates.service';
   //encapsulation: ViewEncapsulation.None
 })
 
-export class NotesCollectionComponent extends ScrollableGridComponent implements OnInit {
+export class NotesCollectionComponent extends ScrollableGridComponent {
   @HostBinding('class.web-component-flex') webComponentFlex = true;
+
+  @Input() set primId(primaryId: string) {
+    this.subId = `${primaryId}`;
+    this.loadNotes({primId: this.subId, primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'});
+  }
 
   private tmpltTypeCodeInput: string;
 /* 
@@ -28,11 +33,6 @@ export class NotesCollectionComponent extends ScrollableGridComponent implements
   get tmpltTypeCode(): string {
     return this.tmpltTypeCodeInput;
   } */
-
-  @Input() set primId(primaryId: string) {
-    this.subId = `${primaryId}`;
-    this.loadNotes({ primId: this.subId, primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'});
-  }
 
 
   notes: NotesCollections[] = [];
@@ -83,8 +83,8 @@ get primId() {
   return this.subId;
 }
 
-ngOnInit() {
-  this.loadNotes({ primId: this.subId, primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'});
+reloadNotes() {
+  this.loadNotes({primId: this.subId, primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'});
 }
 
 toggleSystemNotes() {
@@ -116,7 +116,7 @@ Search() {
              res.modifiedBy.toLocaleLowerCase().match(this.searchValue.toLocaleLowerCase()); 
     }); 
   }else{
-    this.ngOnInit();
+    this.reloadNotes();
   }
 
 }
@@ -130,11 +130,9 @@ loadNotes(customHeader) {
     this.gridHeight = (this.pageSize * this.cellHeight) + this.headerHeight + this.gridBuffer;
     this.notesLoading = false;
     this.changeDetectorRef.detectChanges();
-/*     }, (error) => {
-      console.log("This is the ERROR: " + error);
-      console.log(this);
+     }, (error) => {
     this.alertsService.showErrorSnackbar(error);
-    this.notesLoading = false;  */
+    this.notesLoading = false;
   });
 }
 
