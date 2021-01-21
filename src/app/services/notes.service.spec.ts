@@ -55,4 +55,15 @@ describe('Notes Service', () => {
       expect(response.data).toBeDefined();
     });
   });
+
+  it('should load notes collection data', () => {
+    const customHeaders = {
+      primId: '827321841', primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'
+    };
+
+    service.getNotesCollection( '0', [], customHeaders).subscribe((response) => {
+    expect(response).toBeDefined();
+    expect(response.data).toBeDefined();
+  });
+});
 });

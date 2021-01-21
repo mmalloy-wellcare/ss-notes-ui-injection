@@ -14,8 +14,7 @@ import { TemplatesService } from '../../services/templates.service';
   //encapsulation: ViewEncapsulation.None
 })
 
-//export class NotesCollectionComponent extends ScrollableGridComponent implements OnInit, OnDestroy
-export class NotesCollectionComponent extends ScrollableGridComponent implements OnInit, OnDestroy {
+export class NotesCollectionComponent extends ScrollableGridComponent implements OnInit {
   @HostBinding('class.web-component-flex') webComponentFlex = true;
 
   private tmpltTypeCodeInput: string;
@@ -56,8 +55,8 @@ export class NotesCollectionComponent extends ScrollableGridComponent implements
   private headerHeight = 53;
   private gridBuffer = 70;
 
-  public pageSize = this.notes.length;
-  public gridHeight = (this.pageSize * this.cellHeight) + this.headerHeight + this.gridBuffer;
+  public pageSize; // = this.notes.length;
+  public gridHeight; // = (this.pageSize * this.cellHeight) + this.headerHeight + this.gridBuffer;
 
   systemChecked = true;
   userChecked = true;
@@ -85,8 +84,6 @@ get primId() {
 }
 
 ngOnInit() {
-  //console.log("Initialization");
-  //console.log(this.primId);
   this.loadNotes({ primId: this.subId, primIdTypeCode: 'subscriberId', svcTypeCode: 'ALL', tbl: 'ALL'});
 }
 
@@ -96,7 +93,6 @@ toggleSystemNotes() {
 
 toggleUserNotes() {
   this.userChecked = !this.userChecked;
-  console.log(this.userChecked);
 }
 
 public rowCallback = (context: RowClassArgs) => {
@@ -134,15 +130,14 @@ loadNotes(customHeader) {
     this.gridHeight = (this.pageSize * this.cellHeight) + this.headerHeight + this.gridBuffer;
     this.notesLoading = false;
     this.changeDetectorRef.detectChanges();
-  }, (error) => {
-    //this.alertsService.showErrorSnackbar(error);
-    this.notesLoading = false;
+/*     }, (error) => {
+      console.log("This is the ERROR: " + error);
+      console.log(this);
+    this.alertsService.showErrorSnackbar(error);
+    this.notesLoading = false;  */
   });
 }
 
-ngOnDestroy() {
-  //this.sub.unsubscribe();
-}
 
 
 //New Record (Editable Row)
